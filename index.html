@@ -8625,6 +8625,7 @@
       // ── Materials Templates ────────────────────────────────────────────────────
       (function() {
         const MTM_KEY = 'materialsTemplates_v1';
+        const DEFAULTS_SEED_VERSION = 2; // bump whenever DEFAULT_TEMPLATES are updated
         function uid() { return 'mt_' + Math.random().toString(36).substr(2,9) + '_' + Date.now(); }
 
         const DEFAULT_TEMPLATES = [
@@ -8732,8 +8733,21 @@
         ];
 
         function loadTmplData() {
-          try { const r=JSON.parse(_ls.getItem(MTM_KEY)); if(r&&r.templates) return r; } catch(e) {}
-          const d = { templates: DEFAULT_TEMPLATES };
+          try {
+            const r = JSON.parse(_ls.getItem(MTM_KEY));
+            if (r && Array.isArray(r.templates)) {
+              // Seed defaults if never done, or if DEFAULT_TEMPLATES were updated
+              if ((r.defaultsSeeded || 0) < DEFAULTS_SEED_VERSION) {
+                const existingNames = new Set(r.templates.map(t => t.name));
+                const toAdd = DEFAULT_TEMPLATES.filter(t => !existingNames.has(t.name));
+                r.templates = [...toAdd, ...r.templates];
+                r.defaultsSeeded = DEFAULTS_SEED_VERSION;
+                saveTmplData(r);
+              }
+              return r;
+            }
+          } catch(e) {}
+          const d = { templates: DEFAULT_TEMPLATES, defaultsSeeded: DEFAULTS_SEED_VERSION };
           saveTmplData(d); return d;
         }
         function saveTmplData(d) { try { _ls.setItem(MTM_KEY, JSON.stringify(d)); } catch(e) {} }
