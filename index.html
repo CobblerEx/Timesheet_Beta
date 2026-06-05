@@ -8628,65 +8628,106 @@
         function uid() { return 'mt_' + Math.random().toString(36).substr(2,9) + '_' + Date.now(); }
 
         const DEFAULT_TEMPLATES = [
-          { id: uid(), name: 'A/C Install', items: [
-            { id:uid(), name:'Condensing unit',              qty:1,  unit:'unit' },
-            { id:uid(), name:'Air handler / evap coil',     qty:1,  unit:'unit' },
-            { id:uid(), name:'Refrigerant lineset',          qty:1,  unit:'set'  },
-            { id:uid(), name:'Disconnect box (240V)',         qty:1,  unit:'ea'   },
-            { id:uid(), name:'Thermostat',                   qty:1,  unit:'ea'   },
-            { id:uid(), name:'Thermostat wire 18/5',         qty:1,  unit:'roll' },
-            { id:uid(), name:'Drain pan',                    qty:1,  unit:'ea'   },
-            { id:uid(), name:'Condensate drain line (PVC)',  qty:1,  unit:'ft'   },
-            { id:uid(), name:'P-trap',                       qty:1,  unit:'ea'   },
-            { id:uid(), name:'Filter drier (liquid line)',   qty:1,  unit:'ea'   },
-            { id:uid(), name:'Refrigerant R-410A / R-32',   qty:1,  unit:'lb'   },
-            { id:uid(), name:'Electrical wire 12 AWG',       qty:1,  unit:'ft'   },
-            { id:uid(), name:'Breaker 2-pole',               qty:1,  unit:'ea'   },
-            { id:uid(), name:'Flex duct connector',          qty:2,  unit:'ea'   },
-            { id:uid(), name:'Foil tape',                    qty:1,  unit:'roll' },
-            { id:uid(), name:'Vibration isolation pads',     qty:4,  unit:'ea'   },
+          // ── Furnace Install — Rheem (CSA 636 Venting) ─────────────────────
+          { id: uid(), name: 'Furnace Install — Rheem (636 Venting)', items: [
+            { id:uid(), name:'Rheem 60,000 Two Stage Furnace',   qty:1,   unit:'ea'  },
+            // 636 Venting
+            { id:uid(), name:"10' 636",                          qty:3,   unit:'Ea'  },
+            { id:uid(), name:'2" 636 90°',                       qty:2,   unit:'ea'  },
+            { id:uid(), name:'2" 636 45°',                       qty:1,   unit:'ea'  },
+            { id:uid(), name:'2" 636 Coupling',                  qty:2,   unit:'ea'  },
+            { id:uid(), name:'636 Barbed Fitting',               qty:2,   unit:'ea'  },
+            // Gas connection
+            { id:uid(), name:'3/4" Ball Valve (Indoor Gas)',     qty:1,   unit:'ea'  },
+            { id:uid(), name:'Gas Flex Connector 24"',           qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron Union',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - Tee',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - Cap',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron Nipple 3"',        qty:2,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - 90°',            qty:2,   unit:'ea'  },
+            // Condensate
+            { id:uid(), name:'1/2 PVC 90',                       qty:2,   unit:'ea'  },
+            { id:uid(), name:'1/2 PVC Pipe',                     qty:6,   unit:'Ft'  },
+            { id:uid(), name:'1/2 PVC Coupling',                 qty:1,   unit:'ea'  },
+            // Misc
+            { id:uid(), name:'Furnace Filter 20x25x1',           qty:1,   unit:'ea'  },
+            { id:uid(), name:'Thermostat: Honeywell Focus Pro',  qty:1,   unit:'ea'  },
+            { id:uid(), name:'Thermostat Wire (per ft)',         qty:25,  unit:'ft'  },
           ]},
-          { id: uid(), name: 'Furnace Install', items: [
-            { id:uid(), name:'Furnace unit',                 qty:1,  unit:'unit' },
-            { id:uid(), name:'Flue pipe / vent connector',   qty:1,  unit:'set'  },
-            { id:uid(), name:'B-vent cap',                   qty:1,  unit:'ea'   },
-            { id:uid(), name:'Gas flex connector 3/4"',      qty:1,  unit:'ea'   },
-            { id:uid(), name:'Drip leg assembly',            qty:1,  unit:'ea'   },
-            { id:uid(), name:'Manual shutoff valve 3/4"',    qty:1,  unit:'ea'   },
-            { id:uid(), name:'Thermostat',                   qty:1,  unit:'ea'   },
-            { id:uid(), name:'Thermostat wire 18/5',         qty:1,  unit:'roll' },
-            { id:uid(), name:'Filter',                       qty:1,  unit:'ea'   },
-            { id:uid(), name:'Electrical wire 14 AWG',       qty:1,  unit:'ft'   },
-            { id:uid(), name:'15A breaker',                  qty:1,  unit:'ea'   },
-            { id:uid(), name:'Flex duct connector (supply)', qty:2,  unit:'ea'   },
-            { id:uid(), name:'Flex duct connector (return)', qty:1,  unit:'ea'   },
-            { id:uid(), name:'Foil tape',                    qty:1,  unit:'roll' },
-            { id:uid(), name:'Yellow gas tape (PTFE)',        qty:1,  unit:'roll' },
+          // ── A/C Install — Rheem 2 Ton ──────────────────────────────────────
+          { id: uid(), name: 'A/C Install — Rheem 2 Ton', items: [
+            { id:uid(), name:'2 Ton Rheem A/C',                  qty:1,   unit:'ea'  },
+            { id:uid(), name:'30x30 Pad',                        qty:1,   unit:'ea'  },
+            // Line set & refrigerant
+            { id:uid(), name:'3/8 Pre insulated Copper Line set',qty:25,  unit:'ft'  },
+            { id:uid(), name:'Refrigerant R-410A (per lb)',      qty:0,   unit:'lb'  },
+            // Electrical
+            { id:uid(), name:'Electrical Disconnect',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'1/2 Seal tight Fitting Straight',  qty:2,   unit:'ea'  },
+            // Condensate
+            { id:uid(), name:'3/4 PVC pipe',                     qty:6,   unit:'Ft'  },
+            { id:uid(), name:'3/4 PVC 90',                       qty:2,   unit:'ea'  },
+            { id:uid(), name:'3/4 PVC coupling',                 qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4 PVC street 90',                qty:1,   unit:'ea'  },
+            // Thermostat
+            { id:uid(), name:'Thermostat: Honeywell Focus Pro',  qty:1,   unit:'ea'  },
+            { id:uid(), name:'Thermostat Wire (per ft)',         qty:25,  unit:'ft'  },
           ]},
-          { id: uid(), name: 'Ductless Install (Pre-Insulated Line Sets)', items: [
-            { id:uid(), name:'Outdoor condenser unit',       qty:1,  unit:'unit' },
-            { id:uid(), name:'Indoor wall-mount head',       qty:1,  unit:'unit' },
-            { id:uid(), name:'Pre-insulated lineset',        qty:1,  unit:'set'  },
-            { id:uid(), name:'Wall sleeve / cover plate',    qty:1,  unit:'ea'   },
-            { id:uid(), name:'Disconnect box (240V)',         qty:1,  unit:'ea'   },
-            { id:uid(), name:'Electrical wire 10 or 12 AWG', qty:1,  unit:'ft'   },
-            { id:uid(), name:'Breaker 2-pole',               qty:1,  unit:'ea'   },
-            { id:uid(), name:'Mini-split mounting bracket',  qty:1,  unit:'set'  },
-            { id:uid(), name:'Concrete anchors / lag bolts', qty:4,  unit:'ea'   },
-            { id:uid(), name:'Condensate drain hose',        qty:1,  unit:'ft'   },
-            { id:uid(), name:'Line hide / chase cover',      qty:1,  unit:'set'  },
-            { id:uid(), name:'Communication wire 14/4',      qty:1,  unit:'ft'   },
-            { id:uid(), name:'Refrigerant R-410A / R-32',   qty:1,  unit:'lb'   },
+          // ── Furnace + A/C Install — Rheem ──────────────────────────────────
+          { id: uid(), name: 'Furnace + A/C Install — Rheem', items: [
+            { id:uid(), name:'Rheem 60,000 Two Stage Furnace',   qty:1,   unit:'ea'  },
+            { id:uid(), name:'2 Ton Rheem A/C',                  qty:1,   unit:'ea'  },
+            // 636 Venting
+            { id:uid(), name:"10' 636",                          qty:3,   unit:'Ea'  },
+            { id:uid(), name:'2" 636 90°',                       qty:2,   unit:'ea'  },
+            { id:uid(), name:'2" 636 45°',                       qty:1,   unit:'ea'  },
+            { id:uid(), name:'2" 636 Coupling',                  qty:2,   unit:'ea'  },
+            { id:uid(), name:'636 Barbed Fitting',               qty:2,   unit:'ea'  },
+            // Gas connection
+            { id:uid(), name:'3/4" Ball Valve (Indoor Gas)',     qty:1,   unit:'ea'  },
+            { id:uid(), name:'Gas Flex Connector 24"',           qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron Union',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - Tee',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - Cap',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron Nipple 3"',        qty:2,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - 90°',            qty:2,   unit:'ea'  },
+            // A/C — line set & refrigerant
+            { id:uid(), name:'30x30 Pad',                        qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/8 Pre insulated Copper Line set',qty:25,  unit:'ft'  },
+            { id:uid(), name:'Refrigerant R-410A (per lb)',      qty:0,   unit:'lb'  },
+            { id:uid(), name:'Electrical Disconnect',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'1/2 Seal tight Fitting Straight',  qty:2,   unit:'ea'  },
+            // Condensate (shared)
+            { id:uid(), name:'3/4 PVC pipe',                     qty:6,   unit:'Ft'  },
+            { id:uid(), name:'3/4 PVC 90',                       qty:2,   unit:'ea'  },
+            { id:uid(), name:'3/4 PVC coupling',                 qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4 PVC street 90',                qty:1,   unit:'ea'  },
+            // Misc
+            { id:uid(), name:'Furnace Filter 20x25x1',           qty:1,   unit:'ea'  },
+            { id:uid(), name:'Thermostat: Honeywell Focus Pro',  qty:1,   unit:'ea'  },
+            { id:uid(), name:'Thermostat Wire (per ft)',         qty:25,  unit:'ft'  },
           ]},
+          // ── Ductless Install — Gree 1½ Ton ────────────────────────────────
+          { id: uid(), name: 'Ductless Install — Gree 1½ Ton', items: [
+            { id:uid(), name:'Ductless Split: Gree 1 1/2 Ton',  qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/8 Pre insulated Copper Line set',qty:25,  unit:'ft'  },
+            { id:uid(), name:'Electrical Disconnect',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'1/2 Seal tight Fitting Straight',  qty:2,   unit:'ea'  },
+            { id:uid(), name:'Communication Wire',               qty:25,  unit:'Ft'  },
+            { id:uid(), name:'3/4 PVC pipe',                     qty:6,   unit:'Ft'  },
+            { id:uid(), name:'3/4 PVC 90',                       qty:2,   unit:'ea'  },
+            { id:uid(), name:'3/4 PVC coupling',                 qty:1,   unit:'ea'  },
+            { id:uid(), name:'Refrigerant R-410A (per lb)',      qty:0,   unit:'lb'  },
+          ]},
+          // ── Pool Heater Gas Hook Up ─────────────────────────────────────────
           { id: uid(), name: 'Pool Heater Gas Hook Up', items: [
-            { id:uid(), name:'Drip leg assembly',            qty:1,  unit:'ea'   },
-            { id:uid(), name:'3/4" shutoff valve',           qty:1,  unit:'ea'   },
-            { id:uid(), name:'3/4" union',                   qty:1,  unit:'ea'   },
-            { id:uid(), name:'3/4" tee',                     qty:1,  unit:'ea'   },
-            { id:uid(), name:'3/4" 90° elbow',               qty:2,  unit:'ea'   },
-            { id:uid(), name:'3/4" gas flex connector',      qty:1,  unit:'ea'   },
-            { id:uid(), name:'3/4" black iron pipe',         qty:1,  unit:'ft'   },
-            { id:uid(), name:'Yellow gas tape (PTFE)',        qty:1,  unit:'roll' },
+            { id:uid(), name:'3/4" Ball Valve (Indoor Gas)',     qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron Union',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - Tee',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - Cap',            qty:1,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron - 90°',            qty:2,   unit:'ea'  },
+            { id:uid(), name:'3/4" Black Iron Nipple 3"',        qty:3,   unit:'ea'  },
+            { id:uid(), name:'Gas Flex Connector 36"',           qty:1,   unit:'ea'  },
           ]},
         ];
 
