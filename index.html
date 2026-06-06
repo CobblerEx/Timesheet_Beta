@@ -4751,24 +4751,21 @@
       function _posInvAcDrop(inputEl) {
         const d = document.getElementById('_invMaterialAcDrop');
         if (!d) return;
-        const r   = inputEl.getBoundingClientRect();
-        const vph = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-        const vpScrollTop = window.visualViewport ? window.visualViewport.offsetTop : 0;
-        const spaceBelow  = vph - (r.bottom - vpScrollTop);
-        const spaceAbove  = r.top  - vpScrollTop;
-        const maxH = Math.max(60, Math.min(220, (spaceBelow >= spaceAbove ? spaceBelow : spaceAbove) - 8));
+        const r    = inputEl.getBoundingClientRect();
+        // visualViewport.height shrinks when the keyboard is open on mobile;
+        // window.innerHeight does not. Use vp height so we know real available space.
+        const vpH  = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        const spaceBelow = vpH - r.bottom;
+        const spaceAbove = r.top;
+        const openDown   = spaceBelow >= 100 || spaceBelow >= spaceAbove;
+        const maxH = Math.max(60, Math.min(220, (openDown ? spaceBelow : spaceAbove) - 8));
         d.style.maxHeight = maxH + 'px';
         d.style.width     = r.width + 'px';
         d.style.left      = r.left  + 'px';
-        if (spaceBelow >= 100 || spaceBelow >= spaceAbove) {
-          // Open downward (offset by visualViewport scroll)
-          d.style.top    = (r.bottom + vpScrollTop + 4) + 'px';
-          d.style.bottom = 'auto';
-        } else {
-          // Flip upward
-          d.style.bottom = (window.innerHeight - r.top + vpScrollTop + 4) + 'px';
-          d.style.top    = 'auto';
-        }
+        d.style.bottom    = 'auto'; // always use top so iOS fixed-bottom quirks don't apply
+        d.style.top       = openDown
+          ? (r.bottom + 4) + 'px'
+          : Math.max(0, r.top - maxH - 4) + 'px';
       }
 
       function createItemRow(item = {}) {
@@ -4844,7 +4841,14 @@
         }
 
         function showMaterialDropdown() {
-          const matches = getMaterialMatches(desc.value);
+          // When the field is empty, show all saved materials (up to 8) so the
+          // dropdown appears immediately on focus — same behaviour as the template manager.
+          let matches = getMaterialMatches(desc.value);
+          if (!matches.length && !desc.value.trim()) {
+            matches = Object.values(materialCatalog)
+              .sort((a, b) => a.desc.localeCompare(b.desc))
+              .slice(0, 8);
+          }
           if (!matches.length) { hideMaterialDropdown(); return; }
 
           const d = _getInvAcDrop();
