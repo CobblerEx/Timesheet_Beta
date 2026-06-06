@@ -450,6 +450,18 @@
       }
 
       .desc-cell {position:relative;}
+      .desc-input-wrap {position:relative;}
+      .desc-input-wrap .item-desc {padding-right:40px;}
+      .desc-browse-btn {
+        position:absolute;right:3px;top:50%;transform:translateY(-50%);
+        background:rgba(255,69,0,.13);border:1px solid rgba(255,69,0,.45);
+        border-radius:6px;color:#ff9060;font-size:1rem;
+        width:34px;height:34px;min-height:unset;padding:0;
+        display:flex;align-items:center;justify-content:center;
+        cursor:pointer;flex-shrink:0;
+        -webkit-tap-highlight-color:transparent;
+      }
+      .desc-browse-btn:active {background:rgba(255,69,0,.32);}
       .desc-text {
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -4777,7 +4789,10 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td class="desc-cell imt-desc">
-            <input type="text" class="item-desc" list="materialSuggestions" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" value="${esc(item.desc || '')}" placeholder="Material / extra service">
+            <div class="desc-input-wrap">
+              <input type="text" class="item-desc" list="materialSuggestions" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" value="${esc(item.desc || '')}" placeholder="Material / extra service">
+              <button type="button" class="desc-browse-btn" title="Browse saved materials" tabindex="-1">📋</button>
+            </div>
             <div class="material-autocomplete"></div>
           </td>
           <td class="imt-qty" data-label="Qty">
@@ -4803,6 +4818,22 @@
         const customerPrice = tr.querySelector('.item-customer-price');
         const amountCell = tr.querySelector('.item-amount');
         const autocompleteBox = tr.querySelector('.material-autocomplete');
+        const browseBtn = tr.querySelector('.desc-browse-btn');
+
+        // ── Browse button: opens the Quick Add modal (avoids keyboard/dropdown issues) ──
+        if (browseBtn) {
+          browseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            hideMaterialDropdown();
+            // If this row is still empty, queue it for removal once Quick Add confirms
+            // so we don't leave a blank orphan row behind
+            if (!desc.value.trim()) {
+              window._qaEmptyRowToReplace = tr;
+            }
+            openQuickAddModal();
+          });
+        }
 
         function getMaterialMatches(term) {
           const key = normalizeMaterialKey(term);
@@ -8535,6 +8566,7 @@
       function closeQuickAddModal() {
         const modal = document.getElementById('quickAddMaterialsModal');
         if (modal) { modal.classList.remove('show'); modal.setAttribute('aria-hidden', 'true'); }
+        window._qaEmptyRowToReplace = null; // cancelled — don't remove anything
       }
 
       function renderQuickAddList(filterText) {
@@ -8692,6 +8724,14 @@
             markup: saved?.markup !== undefined ? saved.markup : getDefaultMarkupPercent(), customerPrice: saved?.customerPrice || 0 });
           _qaAddToRecents(desc);
         });
+        // If the modal was opened via the browse button on a fresh empty row, remove that orphan
+        if (window._qaEmptyRowToReplace) {
+          const orphan = window._qaEmptyRowToReplace;
+          if (orphan?.isConnected && !orphan.querySelector('.item-desc')?.value?.trim()) {
+            orphan.remove();
+          }
+          window._qaEmptyRowToReplace = null;
+        }
         closeQuickAddModal();
         saveInvoiceSession();
         updateInvoiceRunningTotal();
