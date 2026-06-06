@@ -4722,6 +4722,55 @@
 
       const USE_CUSTOM_MATERIAL_DROPDOWN = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
+      // ── Shared fixed autocomplete for invoice item rows ──────────────────────
+      // Uses position:fixed so it is never clipped by overflow:hidden parents and
+      // correctly avoids the on-screen keyboard on mobile (via visualViewport).
+      function _getInvAcDrop() {
+        let d = document.getElementById('_invMaterialAcDrop');
+        if (!d) {
+          d = document.createElement('div');
+          d.id = '_invMaterialAcDrop';
+          d.style.cssText = 'position:fixed;background:#1f1f1f;border:1px solid #ff4500;' +
+            'border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.35);overflow-y:auto;' +
+            'z-index:99999;display:none;min-width:180px;';
+          document.body.appendChild(d);
+
+          // Reposition whenever the visual viewport changes (keyboard open/close, scroll)
+          const rePos = () => {
+            if (d.style.display !== 'none' && d._activeInput) _posInvAcDrop(d._activeInput);
+          };
+          if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', rePos, { passive: true });
+            window.visualViewport.addEventListener('scroll', rePos, { passive: true });
+          }
+          window.addEventListener('scroll', rePos, { passive: true });
+        }
+        return d;
+      }
+
+      function _posInvAcDrop(inputEl) {
+        const d = document.getElementById('_invMaterialAcDrop');
+        if (!d) return;
+        const r   = inputEl.getBoundingClientRect();
+        const vph = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        const vpScrollTop = window.visualViewport ? window.visualViewport.offsetTop : 0;
+        const spaceBelow  = vph - (r.bottom - vpScrollTop);
+        const spaceAbove  = r.top  - vpScrollTop;
+        const maxH = Math.max(60, Math.min(220, (spaceBelow >= spaceAbove ? spaceBelow : spaceAbove) - 8));
+        d.style.maxHeight = maxH + 'px';
+        d.style.width     = r.width + 'px';
+        d.style.left      = r.left  + 'px';
+        if (spaceBelow >= 100 || spaceBelow >= spaceAbove) {
+          // Open downward (offset by visualViewport scroll)
+          d.style.top    = (r.bottom + vpScrollTop + 4) + 'px';
+          d.style.bottom = 'auto';
+        } else {
+          // Flip upward
+          d.style.bottom = (window.innerHeight - r.top + vpScrollTop + 4) + 'px';
+          d.style.top    = 'auto';
+        }
+      }
+
       function createItemRow(item = {}) {
         const savedMaterial = getSavedMaterial(item.desc);
         const defaultMarkup = item.markup ?? savedMaterial?.markup ?? getDefaultMarkupPercent();
@@ -4775,6 +4824,10 @@
         }
 
         function hideMaterialDropdown() {
+          // Hide the shared fixed dropdown used on touch/mobile
+          const d = document.getElementById('_invMaterialAcDrop');
+          if (d) { d.style.display = 'none'; d._activeInput = null; }
+          // Also clear the (unused on mobile) inline box
           autocompleteBox.classList.remove('show');
           autocompleteBox.innerHTML = '';
         }
@@ -4792,23 +4845,40 @@
 
         function showMaterialDropdown() {
           const matches = getMaterialMatches(desc.value);
-          if (!matches.length) {
-            hideMaterialDropdown();
-            return;
-          }
-          autocompleteBox.innerHTML = '';
+          if (!matches.length) { hideMaterialDropdown(); return; }
+
+          const d = _getInvAcDrop();
+          d._activeInput = desc;
+          d.innerHTML = '';
+
           matches.forEach((saved, index) => {
             const option = document.createElement('div');
             option.className = 'material-option' + (index === 0 ? ' active' : '');
+            option.style.cssText = 'padding:.55rem .75rem;cursor:pointer;border-bottom:1px solid rgba(255,69,0,.15);min-height:44px;display:flex;align-items:center;';
             option.textContent = saved.desc;
+
+            // Touch: distinguish scroll from tap
+            let _tmoved = false;
+            option.addEventListener('touchstart',  () => { _tmoved = false; option.style.background = 'rgba(255,69,0,.2)'; }, { passive: true });
+            option.addEventListener('touchmove',   () => { _tmoved = true;  option.style.background = '';                  }, { passive: true });
+            option.addEventListener('touchend', (e) => {
+              if (_tmoved) return;
+              e.preventDefault();
+              applySelectedMaterial(saved);
+              hideMaterialDropdown();
+            });
             option.addEventListener('mousedown', (e) => {
               e.preventDefault();
               applySelectedMaterial(saved);
               hideMaterialDropdown();
             });
-            autocompleteBox.appendChild(option);
+            option.addEventListener('mouseover', () => option.style.background = 'rgba(255,69,0,.18)');
+            option.addEventListener('mouseout',  () => option.style.background = '');
+            d.appendChild(option);
           });
-          autocompleteBox.classList.add('show');
+
+          _posInvAcDrop(desc);
+          d.style.display = 'block';
         }
 
         function syncFromSaved(useBestMatch = false) {
@@ -4847,8 +4917,9 @@
         });
         desc.addEventListener('keydown', (e) => {
           if (!USE_CUSTOM_MATERIAL_DROPDOWN) return;
-          const options = [...autocompleteBox.querySelectorAll('.material-option')];
-          if (!autocompleteBox.classList.contains('show') || !options.length) return;
+          const _d = document.getElementById('_invMaterialAcDrop');
+          const options = _d ? [..._d.querySelectorAll('.material-option')] : [];
+          if (!_d || _d.style.display === 'none' || !options.length) return;
           let activeIndex = options.findIndex(opt => opt.classList.contains('active'));
           if (e.key === 'ArrowDown') {
             e.preventDefault();
