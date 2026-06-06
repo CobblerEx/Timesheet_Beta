@@ -1306,7 +1306,27 @@
       .qti-day-divider td { background:rgba(255,69,0,.07); color:#ff7a45; font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.3rem .6rem; border-top:1px solid rgba(255,69,0,.18); }
       #qtiBtnRow { margin-top:.75rem; gap:.5rem; flex-wrap:wrap; align-items:center; }
 
-      /* ── Job Photos Panel ── */
+      /* ── Add-to-Template sheet ── */
+      #attModal{position:fixed;inset:0;z-index:3000;display:none;}
+      #attModal.show{display:block;}
+      #attBackdrop{position:absolute;inset:0;background:rgba(0,0,0,.55);}
+      #attSheet{position:absolute;bottom:0;left:0;right:0;background:#1a1a1a;border-radius:16px 16px 0 0;padding:0 0 env(safe-area-inset-bottom,0);max-height:70vh;display:flex;flex-direction:column;transform:translateY(0);transition:transform .22s ease;}
+      #attSheet.entering{transform:translateY(100%);}
+      #attSheetHead{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem .6rem;border-bottom:1px solid rgba(255,69,0,.2);}
+      #attSheetHead h3{margin:0;font-size:1rem;color:#ffb08a;}
+      #attCloseBtn{background:none;border:1px solid rgba(255,69,0,.35);color:#ff4500;border-radius:50%;width:30px;height:30px;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;min-height:auto;}
+      #attMaterial{font-size:.82rem;color:#aaa;padding:.4rem 1rem .55rem;border-bottom:1px solid rgba(255,69,0,.1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      #attTemplateList{overflow-y:auto;padding:.4rem 0 .6rem;}
+      .att-tmpl-btn{display:flex;align-items:center;gap:.6rem;width:100%;background:none;border:none;border-bottom:1px solid rgba(255,255,255,.05);padding:.75rem 1rem;color:#e0e0e0;font-size:.95rem;cursor:pointer;text-align:left;min-height:48px;}
+      .att-tmpl-btn:active{background:rgba(255,69,0,.12);}
+      .att-tmpl-btn .att-tmpl-icon{font-size:1rem;flex-shrink:0;}
+      .att-tmpl-btn .att-tmpl-count{margin-left:auto;font-size:.75rem;color:#666;background:#2a2a2a;padding:.15rem .4rem;border-radius:4px;white-space:nowrap;}
+      .att-no-templates{padding:1.2rem 1rem;color:#666;font-size:.9rem;text-align:center;}
+      /* Toast */
+      #attToast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0) + 16px);left:50%;transform:translateX(-50%) translateY(20px);background:#28a745;color:#fff;padding:.55rem 1.1rem;border-radius:20px;font-size:.88rem;font-weight:600;white-space:nowrap;z-index:4000;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;}
+      #attToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+
       #jobPhotosSection { margin-top:1.25rem; background:rgba(30,30,30,.95); border:1px solid rgba(255,69,0,.4); border-radius:10px; overflow:hidden; }
       #jobPhotosHeader { display:flex; align-items:center; justify-content:space-between; padding:.75rem 1rem; cursor:pointer; user-select:none; -webkit-user-select:none; background:rgba(255,69,0,.06); }
       #jobPhotosHeader:active { background:rgba(255,69,0,.12); }
@@ -1331,6 +1351,57 @@
       .photo-lightbox-close { position:fixed; top:1rem; right:1.25rem; color:#fff; font-size:1.8rem; cursor:pointer; z-index:3001; background:rgba(0,0,0,.5); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:none; min-height:auto; margin:0; }
       #jobPhotosGrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.75rem; margin-top:.85rem; }
       @media (max-width:480px) { #jobPhotosGrid { grid-template-columns:repeat(2,1fr); } }
+
+      /* ── Browse Saved Materials bottom-sheet ─────────────────────────── */
+      #browseMatsModal{position:fixed;inset:0;z-index:2600;display:none;touch-action:none;}
+      #browseMatsModal.show{display:block;}
+      #browseMatsBackdrop{position:absolute;inset:0;background:rgba(0,0,0,.65);}
+      #browseMatsSheet{position:absolute;bottom:0;left:0;right:0;background:#1a1a1a;
+        border-radius:16px 16px 0 0;max-height:82vh;display:flex;flex-direction:column;
+        box-shadow:0 -6px 32px rgba(0,0,0,.5);transition:transform .22s ease;}
+      #browseMatsSheet.entering{transform:translateY(100%);}
+      #browseMatsHandle{width:40px;height:4px;background:rgba(255,255,255,.2);border-radius:2px;
+        margin:.75rem auto .35rem;flex-shrink:0;}
+      #browseMatsHead{display:flex;align-items:center;justify-content:space-between;
+        padding:.5rem 1rem .65rem;flex-shrink:0;}
+      #browseMatsHead h3{margin:0;font-size:1.05rem;color:#ff4500;font-weight:700;}
+      #browseMatsCount{font-size:.8rem;color:#aaa;margin-left:.5rem;}
+      #browseMatsClose{background:rgba(255,255,255,.08);border:none;color:#ccc;
+        border-radius:8px;width:36px;height:36px;font-size:1.1rem;cursor:pointer;
+        display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+      #browseMatsSearch{margin:0 1rem .65rem;padding:.6rem .85rem;background:#2a2a2a;
+        border:1px solid rgba(255,69,0,.4);border-radius:10px;color:#e0e0e0;
+        font-size:1rem;outline:none;flex-shrink:0;}
+      #browseMatsSearch:focus{border-color:#ff4500;}
+      #browseMatsEmpty{text-align:center;padding:2rem 1rem;color:#888;font-size:.92rem;display:none;}
+      #browseMatsList{overflow-y:auto;padding:0 .75rem .75rem;flex:1;-webkit-overflow-scrolling:touch;}
+      .bm-row{display:flex;align-items:center;gap:.6rem;background:#242424;
+        border:1px solid rgba(255,69,0,.18);border-radius:10px;padding:.6rem .75rem;
+        margin-bottom:.55rem;}
+      .bm-info{flex:1;min-width:0;}
+      .bm-name{font-weight:600;font-size:.92rem;color:#e0e0e0;white-space:nowrap;
+        overflow:hidden;text-overflow:ellipsis;}
+      .bm-meta{font-size:.75rem;color:#aaa;margin-top:.15rem;display:flex;gap:.5rem;flex-wrap:wrap;}
+      .bm-unit{background:rgba(255,69,0,.12);border:1px solid rgba(255,69,0,.25);
+        border-radius:4px;padding:.05rem .35rem;color:#ff9060;font-size:.72rem;font-weight:700;}
+      .bm-cost{color:#88cc88;}
+      .bm-actions{display:flex;gap:.4rem;flex-shrink:0;}
+      .bm-add-inv{background:#28a745;color:#fff;border:none;border-radius:8px;
+        font-size:.88rem;font-weight:700;padding:.4rem .7rem;cursor:pointer;min-height:38px;
+        white-space:nowrap;}
+      .bm-add-inv:active{background:#1e7e34;}
+      .bm-add-tmpl{background:rgba(111,66,193,.25);color:#c39af5;border:1px solid rgba(111,66,193,.5);
+        border-radius:8px;font-size:.82rem;padding:.4rem .55rem;cursor:pointer;min-height:38px;
+        white-space:nowrap;}
+      .bm-add-tmpl:active{background:rgba(111,66,193,.5);}
+      /* Template picker popover inside the sheet */
+      #bmTmplPicker{position:fixed;background:#242424;border:1px solid rgba(111,66,193,.6);
+        border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.5);z-index:2700;
+        min-width:200px;max-width:80vw;display:none;padding:.4rem 0;max-height:260px;overflow-y:auto;}
+      .bm-tp-item{padding:.65rem .9rem;cursor:pointer;font-size:.9rem;color:#e0e0e0;
+        border-bottom:1px solid rgba(111,66,193,.15);}
+      .bm-tp-item:last-child{border-bottom:none;}
+      .bm-tp-item:active{background:rgba(111,66,193,.3);}
 
     </style>
   </head>
@@ -1791,6 +1862,7 @@
           <!-- Row 2: add items -->
           <button type="button" id="addItem" class="mini-btn">Add Item</button>
           <button type="button" id="quickAddMaterials" class="mini-btn" style="background:#17a2b8;">⚡ Quick Add</button>
+          <button type="button" id="browseMaterials" class="mini-btn" style="background:#28a745;">📦 Browse Saved</button>
           <button type="button" id="openMatTemplates" class="mini-btn iag-full" style="background:#6f42c1;">📋 Load From Job Template</button>
           <!-- Divider -->
           <div class="iag-divider"></div>
@@ -2059,6 +2131,37 @@
         </div>
       </div>
     </div>
+
+    <!-- ── Browse Saved Materials bottom-sheet ── -->
+    <div id="browseMatsModal" aria-label="Browse saved materials" role="dialog">
+      <div id="browseMatsBackdrop"></div>
+      <div id="browseMatsSheet">
+        <div id="browseMatsHandle"></div>
+        <div id="browseMatsHead">
+          <h3>📦 Saved Materials <span id="browseMatsCount"></span></h3>
+          <button id="browseMatsClose" aria-label="Close">✕</button>
+        </div>
+        <input type="text" id="browseMatsSearch" placeholder="Search by name…" autocomplete="off" autocorrect="off" spellcheck="false">
+        <div id="browseMatsEmpty">No saved materials match your search.</div>
+        <div id="browseMatsList"></div>
+      </div>
+    </div>
+    <!-- Template picker popover (shared, appended to body via JS) -->
+    <div id="bmTmplPicker"></div>
+
+    <!-- Add-to-Template bottom sheet -->
+    <div id="attModal" role="dialog" aria-label="Add to template">
+      <div id="attBackdrop"></div>
+      <div id="attSheet">
+        <div id="attSheetHead">
+          <h3>📋 Add to Template</h3>
+          <button id="attCloseBtn" aria-label="Close">✕</button>
+        </div>
+        <div id="attMaterial"></div>
+        <div id="attTemplateList"></div>
+      </div>
+    </div>
+    <div id="attToast"></div>
 
     <div id="clientProfilesModal" class="saved-materials-modal" aria-hidden="true">
       <div class="saved-materials-panel">
@@ -2726,6 +2829,7 @@
                 <span style="font-size:.76rem;color:${daysColor};">${esc(daysLabel)}</span>
                 <button type="button" class="mini-btn sml-edit-btn" style="padding:.25rem .6rem;font-size:.75rem;min-height:auto;background:#ff4500;">✏️ Edit</button>
                 <button type="button" class="mini-btn sml-mark-updated" style="padding:.25rem .55rem;font-size:.75rem;min-height:auto;background:#28a745;">✓ Mark Updated</button>
+                <button type="button" class="mini-btn sml-add-to-tmpl" style="padding:.25rem .55rem;font-size:.75rem;min-height:auto;background:#6f42c1;">📋 Template</button>
                 <label style="display:flex;align-items:center;gap:.3rem;font-size:.76rem;cursor:pointer;margin:0;">
                   <input type="checkbox" class="sml-alert-toggle" ${alertOn ? 'checked' : ''} style="width:auto;min-height:auto;margin:0;accent-color:#ff4500;">
                   <span style="color:#bbb;">Alerts</span>
@@ -2840,6 +2944,7 @@
             }
           });
           row.querySelector('.sml-delete').addEventListener('click', () => deleteSavedMaterial(item.desc));
+          row.querySelector('.sml-add-to-tmpl').addEventListener('click', () => openAddToTemplate(item));
 
           // ── Mass edit: prepend checkbox if mode is active ──
           if (_massEditActive) {
@@ -9252,6 +9357,279 @@
         });
 
       })(); // end Materials Templates IIFE
+
+      // ── Add-to-Template sheet ────────────────────────────────────────────────
+      (function () {
+        const ATT_KEY = 'materialsTemplates_v1';
+        const modal   = document.getElementById('attModal');
+        const sheet   = document.getElementById('attSheet');
+        const backdrop= document.getElementById('attBackdrop');
+        const closeBtn= document.getElementById('attCloseBtn');
+        const matLabel= document.getElementById('attMaterial');
+        const listEl  = document.getElementById('attTemplateList');
+        const toast   = document.getElementById('attToast');
+        let _toastTimer = null;
+
+        function loadTemplates() {
+          try { return JSON.parse(localStorage.getItem(ATT_KEY) || '{}').templates || []; }
+          catch(e) { return []; }
+        }
+        function saveTemplates(templates) {
+          try {
+            const d = JSON.parse(localStorage.getItem(ATT_KEY) || '{}');
+            d.templates = templates;
+            localStorage.setItem(ATT_KEY, JSON.stringify(d));
+          } catch(e) {}
+        }
+        function uid() { return 'mt_' + Math.random().toString(36).substr(2,9) + '_' + Date.now(); }
+
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add('show');
+          clearTimeout(_toastTimer);
+          _toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        function openAddToTemplate(item) {
+          matLabel.textContent = '📦 ' + item.desc;
+          listEl.innerHTML = '';
+          const templates = loadTemplates();
+          if (!templates.length) {
+            listEl.innerHTML = '<div class="att-no-templates">No templates yet — create one in the 📋 Materials Templates tab first.</div>';
+          } else {
+            templates.forEach(tmpl => {
+              const alreadyIn = tmpl.items.some(i => i.name.trim().toLowerCase() === item.desc.trim().toLowerCase());
+              const btn = document.createElement('button');
+              btn.className = 'att-tmpl-btn';
+              btn.innerHTML =
+                `<span class="att-tmpl-icon">${alreadyIn ? '✅' : '📋'}</span>` +
+                `<span style="flex:1;">${tmpl.name}</span>` +
+                `<span class="att-tmpl-count">${tmpl.items.length} item${tmpl.items.length === 1 ? '' : 's'}</span>`;
+              if (alreadyIn) btn.style.opacity = '.6';
+              btn.addEventListener('click', () => {
+                const templates2 = loadTemplates();
+                const t = templates2.find(x => x.id === tmpl.id);
+                if (!t) return;
+                // Prevent exact-name duplicates
+                if (t.items.some(i => i.name.trim().toLowerCase() === item.desc.trim().toLowerCase())) {
+                  showToast('⚠️ Already in "' + tmpl.name + '"');
+                  close();
+                  return;
+                }
+                t.items.push({ id: uid(), name: item.desc, qty: 1, unit: item.unit || 'ea' });
+                saveTemplates(templates2);
+                showToast('✅ Added to "' + tmpl.name + '"');
+                close();
+              });
+              listEl.appendChild(btn);
+            });
+          }
+          modal.classList.add('show');
+          sheet.classList.add('entering');
+          requestAnimationFrame(() => requestAnimationFrame(() => sheet.classList.remove('entering')));
+        }
+
+        function close() {
+          sheet.style.transform = 'translateY(100%)';
+          setTimeout(() => { modal.classList.remove('show'); sheet.style.transform = ''; }, 230);
+        }
+
+        closeBtn.addEventListener('click', close);
+        backdrop.addEventListener('click', close);
+
+        // Expose globally so renderSavedMaterialsList can call it
+        window.openAddToTemplate = openAddToTemplate;
+      })(); // end Add-to-Template IIFE
+
+      // ── Browse Saved Materials bottom-sheet ─────────────────────────────────
+      (function () {
+        const modal   = document.getElementById('browseMatsModal');
+        const sheet   = document.getElementById('browseMatsSheet');
+        const backdrop= document.getElementById('browseMatsBackdrop');
+        const closeBtn= document.getElementById('browseMatsClose');
+        const searchEl= document.getElementById('browseMatsSearch');
+        const listEl  = document.getElementById('browseMatsList');
+        const emptyEl = document.getElementById('browseMatsEmpty');
+        const countEl = document.getElementById('browseMatsCount');
+        const picker  = document.getElementById('bmTmplPicker');
+
+        // ── Helpers ──────────────────────────────────────────────────────────
+        function getTmplData() {
+          try { return JSON.parse(localStorage.getItem('invTemplatesData') || '{"templates":[]}'); }
+          catch(e) { return { templates: [] }; }
+        }
+        function saveTmplDataExt(d) {
+          localStorage.setItem('invTemplatesData', JSON.stringify(d));
+        }
+        function uid() { return Math.random().toString(36).slice(2,10) + Date.now().toString(36); }
+
+        // ── Open / Close ─────────────────────────────────────────────────────
+        function openBrowse() {
+          searchEl.value = '';
+          renderList('');
+          modal.classList.add('show');
+          // Animate in
+          sheet.classList.add('entering');
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => sheet.classList.remove('entering'));
+          });
+          setTimeout(() => searchEl.focus(), 300);
+        }
+
+        function closeBrowse() {
+          modal.classList.remove('show');
+          picker.style.display = 'none';
+        }
+
+        backdrop.addEventListener('click', closeBrowse);
+        closeBtn.addEventListener('click', closeBrowse);
+        modal.addEventListener('keydown', e => { if (e.key === 'Escape') closeBrowse(); });
+
+        document.getElementById('browseMaterials').addEventListener('click', openBrowse);
+
+        // ── Render list ───────────────────────────────────────────────────────
+        function renderList(query) {
+          const q = query.trim().toLowerCase();
+          const all = typeof materialCatalog !== 'undefined'
+            ? Object.values(materialCatalog)
+                .sort((a, b) => a.desc.localeCompare(b.desc))
+            : [];
+          const filtered = q
+            ? all.filter(m => m.desc.toLowerCase().includes(q))
+            : all;
+
+          countEl.textContent = filtered.length
+            ? '(' + filtered.length + ')'
+            : '';
+          listEl.innerHTML = '';
+          emptyEl.style.display = filtered.length ? 'none' : 'block';
+
+          filtered.forEach(mat => {
+            const row = document.createElement('div');
+            row.className = 'bm-row';
+
+            const info = document.createElement('div');
+            info.className = 'bm-info';
+
+            const name = document.createElement('div');
+            name.className = 'bm-name';
+            name.textContent = mat.desc;
+
+            const meta = document.createElement('div');
+            meta.className = 'bm-meta';
+            const unitBadge = document.createElement('span');
+            unitBadge.className = 'bm-unit';
+            unitBadge.textContent = mat.unit || 'ea';
+            meta.appendChild(unitBadge);
+            if (mat.customerPrice) {
+              const cost = document.createElement('span');
+              cost.className = 'bm-cost';
+              cost.textContent = '$' + parseFloat(mat.customerPrice).toFixed(2);
+              meta.appendChild(cost);
+            }
+
+            info.appendChild(name);
+            info.appendChild(meta);
+
+            const actions = document.createElement('div');
+            actions.className = 'bm-actions';
+
+            // ＋ Add to Invoice
+            const addInv = document.createElement('button');
+            addInv.className = 'bm-add-inv';
+            addInv.textContent = '+ Invoice';
+            addInv.addEventListener('click', () => {
+              if (typeof createItemRow === 'function') {
+                createItemRow({
+                  desc: mat.desc,
+                  qty: 1,
+                  unit: mat.unit || 'ea',
+                  distributorCost: mat.distributorCost || 0,
+                  markup: mat.markup !== undefined ? mat.markup
+                    : (typeof getDefaultMarkupPercent === 'function' ? getDefaultMarkupPercent() : 25),
+                  customerPrice: mat.customerPrice || 0
+                });
+              }
+              // Brief flash to confirm
+              addInv.textContent = '✓ Added';
+              addInv.style.background = '#1a6b30';
+              setTimeout(() => {
+                addInv.textContent = '+ Invoice';
+                addInv.style.background = '';
+              }, 900);
+            });
+
+            // 📋 Add to Template
+            const addTmpl = document.createElement('button');
+            addTmpl.className = 'bm-add-tmpl';
+            addTmpl.title = 'Add to a job template';
+            addTmpl.textContent = '📋';
+            addTmpl.addEventListener('click', (e) => {
+              e.stopPropagation();
+              showTmplPicker(mat, addTmpl);
+            });
+
+            actions.appendChild(addInv);
+            actions.appendChild(addTmpl);
+            row.appendChild(info);
+            row.appendChild(actions);
+            listEl.appendChild(row);
+          });
+        }
+
+        searchEl.addEventListener('input', () => renderList(searchEl.value));
+
+        // ── Template picker ───────────────────────────────────────────────────
+        function showTmplPicker(mat, anchorBtn) {
+          const data = getTmplData();
+          if (!data.templates.length) {
+            alert('No templates yet. Create one with "📋 Load From Job Template" → Manage Templates → + New Template.');
+            return;
+          }
+          picker.innerHTML = '';
+          data.templates.forEach(tmpl => {
+            const item = document.createElement('div');
+            item.className = 'bm-tp-item';
+            const alreadyIn = tmpl.items.some(i => i.name.toLowerCase() === mat.desc.toLowerCase());
+            item.textContent = tmpl.name + (alreadyIn ? ' ✓' : '');
+            item.style.opacity = alreadyIn ? '.6' : '1';
+            item.addEventListener('click', () => {
+              if (!alreadyIn) {
+                tmpl.items.push({
+                  id: uid(),
+                  name: mat.desc,
+                  unit: mat.unit || 'ea',
+                  qty: 1
+                });
+                saveTmplDataExt(data);
+              }
+              picker.style.display = 'none';
+              // Confirm flash on the 📋 button
+              anchorBtn.textContent = '✓';
+              setTimeout(() => { anchorBtn.textContent = '📋'; }, 1000);
+            });
+            picker.appendChild(item);
+          });
+
+          // Position picker above/below the anchor button
+          const r   = anchorBtn.getBoundingClientRect();
+          const vpH = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+          picker.style.display = 'block';
+          const ph = picker.offsetHeight;
+          picker.style.left = Math.max(4, r.right - picker.offsetWidth) + 'px';
+          picker.style.top = (r.top - ph - 6 >= 0)
+            ? (r.top - ph - 6) + 'px'
+            : (r.bottom + 6) + 'px';
+        }
+
+        // Close picker on outside tap
+        document.addEventListener('click', e => {
+          if (picker.style.display === 'block' && !picker.contains(e.target)) {
+            picker.style.display = 'none';
+          }
+        });
+
+      })(); // end Browse Saved Materials
       // ──────────────────────────────────────────────────────────────────────────
 
       loadData();
