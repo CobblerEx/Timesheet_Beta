@@ -450,18 +450,6 @@
       }
 
       .desc-cell {position:relative;}
-      .desc-input-wrap {position:relative;}
-      .desc-input-wrap .item-desc {padding-right:40px;}
-      .desc-browse-btn {
-        position:absolute;right:3px;top:50%;transform:translateY(-50%);
-        background:rgba(255,69,0,.13);border:1px solid rgba(255,69,0,.45);
-        border-radius:6px;color:#ff9060;font-size:1rem;
-        width:34px;height:34px;min-height:unset;padding:0;
-        display:flex;align-items:center;justify-content:center;
-        cursor:pointer;flex-shrink:0;
-        -webkit-tap-highlight-color:transparent;
-      }
-      .desc-browse-btn:active {background:rgba(255,69,0,.32);}
       .desc-text {
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -1306,27 +1294,7 @@
       .qti-day-divider td { background:rgba(255,69,0,.07); color:#ff7a45; font-size:.68rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.3rem .6rem; border-top:1px solid rgba(255,69,0,.18); }
       #qtiBtnRow { margin-top:.75rem; gap:.5rem; flex-wrap:wrap; align-items:center; }
 
-      /* ── Add-to-Template sheet ── */
-      #attModal{position:fixed;inset:0;z-index:3000;display:none;}
-      #attModal.show{display:block;}
-      #attBackdrop{position:absolute;inset:0;background:rgba(0,0,0,.55);}
-      #attSheet{position:absolute;bottom:0;left:0;right:0;background:#1a1a1a;border-radius:16px 16px 0 0;padding:0 0 env(safe-area-inset-bottom,0);max-height:70vh;display:flex;flex-direction:column;transform:translateY(0);transition:transform .22s ease;}
-      #attSheet.entering{transform:translateY(100%);}
-      #attSheetHead{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem .6rem;border-bottom:1px solid rgba(255,69,0,.2);}
-      #attSheetHead h3{margin:0;font-size:1rem;color:#ffb08a;}
-      #attCloseBtn{background:none;border:1px solid rgba(255,69,0,.35);color:#ff4500;border-radius:50%;width:30px;height:30px;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;min-height:auto;}
-      #attMaterial{font-size:.82rem;color:#aaa;padding:.4rem 1rem .55rem;border-bottom:1px solid rgba(255,69,0,.1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-      #attTemplateList{overflow-y:auto;padding:.4rem 0 .6rem;}
-      .att-tmpl-btn{display:flex;align-items:center;gap:.6rem;width:100%;background:none;border:none;border-bottom:1px solid rgba(255,255,255,.05);padding:.75rem 1rem;color:#e0e0e0;font-size:.95rem;cursor:pointer;text-align:left;min-height:48px;}
-      .att-tmpl-btn:active{background:rgba(255,69,0,.12);}
-      .att-tmpl-btn .att-tmpl-icon{font-size:1rem;flex-shrink:0;}
-      .att-tmpl-btn .att-tmpl-count{margin-left:auto;font-size:.75rem;color:#666;background:#2a2a2a;padding:.15rem .4rem;border-radius:4px;white-space:nowrap;}
-      .att-no-templates{padding:1.2rem 1rem;color:#666;font-size:.9rem;text-align:center;}
-      /* Toast */
-      #attToast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0) + 16px);left:50%;transform:translateX(-50%) translateY(20px);background:#28a745;color:#fff;padding:.55rem 1.1rem;border-radius:20px;font-size:.88rem;font-weight:600;white-space:nowrap;z-index:4000;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;}
-      #attToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-
+      /* ── Job Photos Panel ── */
       #jobPhotosSection { margin-top:1.25rem; background:rgba(30,30,30,.95); border:1px solid rgba(255,69,0,.4); border-radius:10px; overflow:hidden; }
       #jobPhotosHeader { display:flex; align-items:center; justify-content:space-between; padding:.75rem 1rem; cursor:pointer; user-select:none; -webkit-user-select:none; background:rgba(255,69,0,.06); }
       #jobPhotosHeader:active { background:rgba(255,69,0,.12); }
@@ -1351,57 +1319,6 @@
       .photo-lightbox-close { position:fixed; top:1rem; right:1.25rem; color:#fff; font-size:1.8rem; cursor:pointer; z-index:3001; background:rgba(0,0,0,.5); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:none; min-height:auto; margin:0; }
       #jobPhotosGrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.75rem; margin-top:.85rem; }
       @media (max-width:480px) { #jobPhotosGrid { grid-template-columns:repeat(2,1fr); } }
-
-      /* ── Browse Saved Materials bottom-sheet ─────────────────────────── */
-      #browseMatsModal{position:fixed;inset:0;z-index:2600;display:none;touch-action:none;}
-      #browseMatsModal.show{display:block;}
-      #browseMatsBackdrop{position:absolute;inset:0;background:rgba(0,0,0,.65);}
-      #browseMatsSheet{position:absolute;bottom:0;left:0;right:0;background:#1a1a1a;
-        border-radius:16px 16px 0 0;max-height:82vh;display:flex;flex-direction:column;
-        box-shadow:0 -6px 32px rgba(0,0,0,.5);transition:transform .22s ease;}
-      #browseMatsSheet.entering{transform:translateY(100%);}
-      #browseMatsHandle{width:40px;height:4px;background:rgba(255,255,255,.2);border-radius:2px;
-        margin:.75rem auto .35rem;flex-shrink:0;}
-      #browseMatsHead{display:flex;align-items:center;justify-content:space-between;
-        padding:.5rem 1rem .65rem;flex-shrink:0;}
-      #browseMatsHead h3{margin:0;font-size:1.05rem;color:#ff4500;font-weight:700;}
-      #browseMatsCount{font-size:.8rem;color:#aaa;margin-left:.5rem;}
-      #browseMatsClose{background:rgba(255,255,255,.08);border:none;color:#ccc;
-        border-radius:8px;width:36px;height:36px;font-size:1.1rem;cursor:pointer;
-        display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-      #browseMatsSearch{margin:0 1rem .65rem;padding:.6rem .85rem;background:#2a2a2a;
-        border:1px solid rgba(255,69,0,.4);border-radius:10px;color:#e0e0e0;
-        font-size:1rem;outline:none;flex-shrink:0;}
-      #browseMatsSearch:focus{border-color:#ff4500;}
-      #browseMatsEmpty{text-align:center;padding:2rem 1rem;color:#888;font-size:.92rem;display:none;}
-      #browseMatsList{overflow-y:auto;padding:0 .75rem .75rem;flex:1;-webkit-overflow-scrolling:touch;}
-      .bm-row{display:flex;align-items:center;gap:.6rem;background:#242424;
-        border:1px solid rgba(255,69,0,.18);border-radius:10px;padding:.6rem .75rem;
-        margin-bottom:.55rem;}
-      .bm-info{flex:1;min-width:0;}
-      .bm-name{font-weight:600;font-size:.92rem;color:#e0e0e0;white-space:nowrap;
-        overflow:hidden;text-overflow:ellipsis;}
-      .bm-meta{font-size:.75rem;color:#aaa;margin-top:.15rem;display:flex;gap:.5rem;flex-wrap:wrap;}
-      .bm-unit{background:rgba(255,69,0,.12);border:1px solid rgba(255,69,0,.25);
-        border-radius:4px;padding:.05rem .35rem;color:#ff9060;font-size:.72rem;font-weight:700;}
-      .bm-cost{color:#88cc88;}
-      .bm-actions{display:flex;gap:.4rem;flex-shrink:0;}
-      .bm-add-inv{background:#28a745;color:#fff;border:none;border-radius:8px;
-        font-size:.88rem;font-weight:700;padding:.4rem .7rem;cursor:pointer;min-height:38px;
-        white-space:nowrap;}
-      .bm-add-inv:active{background:#1e7e34;}
-      .bm-add-tmpl{background:rgba(111,66,193,.25);color:#c39af5;border:1px solid rgba(111,66,193,.5);
-        border-radius:8px;font-size:.82rem;padding:.4rem .55rem;cursor:pointer;min-height:38px;
-        white-space:nowrap;}
-      .bm-add-tmpl:active{background:rgba(111,66,193,.5);}
-      /* Template picker popover inside the sheet */
-      #bmTmplPicker{position:fixed;background:#242424;border:1px solid rgba(111,66,193,.6);
-        border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.5);z-index:2700;
-        min-width:200px;max-width:80vw;display:none;padding:.4rem 0;max-height:260px;overflow-y:auto;}
-      .bm-tp-item{padding:.65rem .9rem;cursor:pointer;font-size:.9rem;color:#e0e0e0;
-        border-bottom:1px solid rgba(111,66,193,.15);}
-      .bm-tp-item:last-child{border-bottom:none;}
-      .bm-tp-item:active{background:rgba(111,66,193,.3);}
 
     </style>
   </head>
@@ -1493,19 +1410,6 @@
             <span class="settings-btn-arrow">›</span>
           </button>
         </div>
-
-        <div class="settings-divider"></div>
-
-        <!-- App -->
-        <div class="settings-group-label">App</div>
-        <button type="button" class="settings-btn" onclick="location.reload(true)">
-          <span class="settings-btn-icon" style="background:rgba(255,69,0,.15);color:#ff4500;"><i class="fas fa-sync-alt"></i></span>
-          <span class="settings-btn-text">
-            <span class="settings-btn-title">Reload App</span>
-            <span class="settings-btn-desc">Force a fresh reload to pick up any changes</span>
-          </span>
-          <span class="settings-btn-arrow">›</span>
-        </button>
 
         <!-- Clear (subtle, no scary label) -->
         <div class="settings-clear-wrap">
@@ -1875,7 +1779,6 @@
           <!-- Row 2: add items -->
           <button type="button" id="addItem" class="mini-btn">Add Item</button>
           <button type="button" id="quickAddMaterials" class="mini-btn" style="background:#17a2b8;">⚡ Quick Add</button>
-          <button type="button" id="browseMaterials" class="mini-btn" style="background:#28a745;">📦 Browse Saved</button>
           <button type="button" id="openMatTemplates" class="mini-btn iag-full" style="background:#6f42c1;">📋 Load From Job Template</button>
           <!-- Divider -->
           <div class="iag-divider"></div>
@@ -2144,37 +2047,6 @@
         </div>
       </div>
     </div>
-
-    <!-- ── Browse Saved Materials bottom-sheet ── -->
-    <div id="browseMatsModal" aria-label="Browse saved materials" role="dialog">
-      <div id="browseMatsBackdrop"></div>
-      <div id="browseMatsSheet">
-        <div id="browseMatsHandle"></div>
-        <div id="browseMatsHead">
-          <h3>📦 Saved Materials <span id="browseMatsCount"></span></h3>
-          <button id="browseMatsClose" aria-label="Close">✕</button>
-        </div>
-        <input type="text" id="browseMatsSearch" placeholder="Search by name…" autocomplete="off" autocorrect="off" spellcheck="false">
-        <div id="browseMatsEmpty">No saved materials match your search.</div>
-        <div id="browseMatsList"></div>
-      </div>
-    </div>
-    <!-- Template picker popover (shared, appended to body via JS) -->
-    <div id="bmTmplPicker"></div>
-
-    <!-- Add-to-Template bottom sheet -->
-    <div id="attModal" role="dialog" aria-label="Add to template">
-      <div id="attBackdrop"></div>
-      <div id="attSheet">
-        <div id="attSheetHead">
-          <h3>📋 Add to Template</h3>
-          <button id="attCloseBtn" aria-label="Close">✕</button>
-        </div>
-        <div id="attMaterial"></div>
-        <div id="attTemplateList"></div>
-      </div>
-    </div>
-    <div id="attToast"></div>
 
     <div id="clientProfilesModal" class="saved-materials-modal" aria-hidden="true">
       <div class="saved-materials-panel">
@@ -2842,7 +2714,6 @@
                 <span style="font-size:.76rem;color:${daysColor};">${esc(daysLabel)}</span>
                 <button type="button" class="mini-btn sml-edit-btn" style="padding:.25rem .6rem;font-size:.75rem;min-height:auto;background:#ff4500;">✏️ Edit</button>
                 <button type="button" class="mini-btn sml-mark-updated" style="padding:.25rem .55rem;font-size:.75rem;min-height:auto;background:#28a745;">✓ Mark Updated</button>
-                <button type="button" class="mini-btn sml-add-to-tmpl" style="padding:.25rem .55rem;font-size:.75rem;min-height:auto;background:#6f42c1;">📋 Template</button>
                 <label style="display:flex;align-items:center;gap:.3rem;font-size:.76rem;cursor:pointer;margin:0;">
                   <input type="checkbox" class="sml-alert-toggle" ${alertOn ? 'checked' : ''} style="width:auto;min-height:auto;margin:0;accent-color:#ff4500;">
                   <span style="color:#bbb;">Alerts</span>
@@ -2957,7 +2828,6 @@
             }
           });
           row.querySelector('.sml-delete').addEventListener('click', () => deleteSavedMaterial(item.desc));
-          row.querySelector('.sml-add-to-tmpl').addEventListener('click', () => openAddToTemplate(item));
 
           // ── Mass edit: prepend checkbox if mode is active ──
           if (_massEditActive) {
@@ -4852,52 +4722,6 @@
 
       const USE_CUSTOM_MATERIAL_DROPDOWN = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
-      // ── Shared fixed autocomplete for invoice item rows ──────────────────────
-      // Uses position:fixed so it is never clipped by overflow:hidden parents and
-      // correctly avoids the on-screen keyboard on mobile (via visualViewport).
-      function _getInvAcDrop() {
-        let d = document.getElementById('_invMaterialAcDrop');
-        if (!d) {
-          d = document.createElement('div');
-          d.id = '_invMaterialAcDrop';
-          d.style.cssText = 'position:fixed;background:#1f1f1f;border:1px solid #ff4500;' +
-            'border-radius:6px;box-shadow:0 8px 18px rgba(0,0,0,.35);overflow-y:auto;' +
-            'z-index:99999;display:none;min-width:180px;';
-          document.body.appendChild(d);
-
-          // Reposition whenever the visual viewport changes (keyboard open/close, scroll)
-          const rePos = () => {
-            if (d.style.display !== 'none' && d._activeInput) _posInvAcDrop(d._activeInput);
-          };
-          if (window.visualViewport) {
-            window.visualViewport.addEventListener('resize', rePos, { passive: true });
-            window.visualViewport.addEventListener('scroll', rePos, { passive: true });
-          }
-          window.addEventListener('scroll', rePos, { passive: true });
-        }
-        return d;
-      }
-
-      function _posInvAcDrop(inputEl) {
-        const d = document.getElementById('_invMaterialAcDrop');
-        if (!d) return;
-        const r    = inputEl.getBoundingClientRect();
-        // visualViewport.height shrinks when the keyboard is open on mobile;
-        // window.innerHeight does not. Use vp height so we know real available space.
-        const vpH  = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-        const spaceBelow = vpH - r.bottom;
-        const spaceAbove = r.top;
-        const openDown   = spaceBelow >= 100 || spaceBelow >= spaceAbove;
-        const maxH = Math.max(60, Math.min(220, (openDown ? spaceBelow : spaceAbove) - 8));
-        d.style.maxHeight = maxH + 'px';
-        d.style.width     = r.width + 'px';
-        d.style.left      = r.left  + 'px';
-        d.style.bottom    = 'auto'; // always use top so iOS fixed-bottom quirks don't apply
-        d.style.top       = openDown
-          ? (r.bottom + 4) + 'px'
-          : Math.max(0, r.top - maxH - 4) + 'px';
-      }
-
       function createItemRow(item = {}) {
         const savedMaterial = getSavedMaterial(item.desc);
         const defaultMarkup = item.markup ?? savedMaterial?.markup ?? getDefaultMarkupPercent();
@@ -4907,10 +4731,7 @@
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td class="desc-cell imt-desc">
-            <div class="desc-input-wrap">
-              <input type="text" class="item-desc" list="materialSuggestions" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" value="${esc(item.desc || '')}" placeholder="Material / extra service">
-              <button type="button" class="desc-browse-btn" title="Browse saved materials" tabindex="-1">📋</button>
-            </div>
+            <input type="text" class="item-desc" list="materialSuggestions" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" value="${esc(item.desc || '')}" placeholder="Material / extra service">
             <div class="material-autocomplete"></div>
           </td>
           <td class="imt-qty" data-label="Qty">
@@ -4936,22 +4757,6 @@
         const customerPrice = tr.querySelector('.item-customer-price');
         const amountCell = tr.querySelector('.item-amount');
         const autocompleteBox = tr.querySelector('.material-autocomplete');
-        const browseBtn = tr.querySelector('.desc-browse-btn');
-
-        // ── Browse button: opens the Quick Add modal (avoids keyboard/dropdown issues) ──
-        if (browseBtn) {
-          browseBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            hideMaterialDropdown();
-            // If this row is still empty, queue it for removal once Quick Add confirms
-            // so we don't leave a blank orphan row behind
-            if (!desc.value.trim()) {
-              window._qaEmptyRowToReplace = tr;
-            }
-            openQuickAddModal();
-          });
-        }
 
         function getMaterialMatches(term) {
           const key = normalizeMaterialKey(term);
@@ -4970,10 +4775,6 @@
         }
 
         function hideMaterialDropdown() {
-          // Hide the shared fixed dropdown used on touch/mobile
-          const d = document.getElementById('_invMaterialAcDrop');
-          if (d) { d.style.display = 'none'; d._activeInput = null; }
-          // Also clear the (unused on mobile) inline box
           autocompleteBox.classList.remove('show');
           autocompleteBox.innerHTML = '';
         }
@@ -4990,48 +4791,24 @@
         }
 
         function showMaterialDropdown() {
-          // When the field is empty, show all saved materials (up to 8) so the
-          // dropdown appears immediately on focus — same behaviour as the template manager.
-          let matches = getMaterialMatches(desc.value);
-          if (!matches.length && !desc.value.trim()) {
-            matches = Object.values(materialCatalog)
-              .sort((a, b) => a.desc.localeCompare(b.desc))
-              .slice(0, 8);
+          const matches = getMaterialMatches(desc.value);
+          if (!matches.length) {
+            hideMaterialDropdown();
+            return;
           }
-          if (!matches.length) { hideMaterialDropdown(); return; }
-
-          const d = _getInvAcDrop();
-          d._activeInput = desc;
-          d.innerHTML = '';
-
+          autocompleteBox.innerHTML = '';
           matches.forEach((saved, index) => {
             const option = document.createElement('div');
             option.className = 'material-option' + (index === 0 ? ' active' : '');
-            option.style.cssText = 'padding:.55rem .75rem;cursor:pointer;border-bottom:1px solid rgba(255,69,0,.15);min-height:44px;display:flex;align-items:center;';
             option.textContent = saved.desc;
-
-            // Touch: distinguish scroll from tap
-            let _tmoved = false;
-            option.addEventListener('touchstart',  () => { _tmoved = false; option.style.background = 'rgba(255,69,0,.2)'; }, { passive: true });
-            option.addEventListener('touchmove',   () => { _tmoved = true;  option.style.background = '';                  }, { passive: true });
-            option.addEventListener('touchend', (e) => {
-              if (_tmoved) return;
-              e.preventDefault();
-              applySelectedMaterial(saved);
-              hideMaterialDropdown();
-            });
             option.addEventListener('mousedown', (e) => {
               e.preventDefault();
               applySelectedMaterial(saved);
               hideMaterialDropdown();
             });
-            option.addEventListener('mouseover', () => option.style.background = 'rgba(255,69,0,.18)');
-            option.addEventListener('mouseout',  () => option.style.background = '');
-            d.appendChild(option);
+            autocompleteBox.appendChild(option);
           });
-
-          _posInvAcDrop(desc);
-          d.style.display = 'block';
+          autocompleteBox.classList.add('show');
         }
 
         function syncFromSaved(useBestMatch = false) {
@@ -5070,9 +4847,8 @@
         });
         desc.addEventListener('keydown', (e) => {
           if (!USE_CUSTOM_MATERIAL_DROPDOWN) return;
-          const _d = document.getElementById('_invMaterialAcDrop');
-          const options = _d ? [..._d.querySelectorAll('.material-option')] : [];
-          if (!_d || _d.style.display === 'none' || !options.length) return;
+          const options = [...autocompleteBox.querySelectorAll('.material-option')];
+          if (!autocompleteBox.classList.contains('show') || !options.length) return;
           let activeIndex = options.findIndex(opt => opt.classList.contains('active'));
           if (e.key === 'ArrowDown') {
             e.preventDefault();
@@ -6100,6 +5876,12 @@
         document.getElementById('clientEmail').value = '';
         document.getElementById('clientAddress').value = '';
         document.getElementById('laborDescription').value = '';
+        const efEl = document.getElementById('entrySelectorFilter');
+        if (efEl) efEl.value = '';
+        const draftList = document.getElementById('invoiceDraftList');
+        if (draftList) draftList.value = '';
+        const syncHint = document.getElementById('laborDescSyncHint');
+        if (syncHint) syncHint.style.display = 'none';
         const depEl = document.getElementById('depositAmount');
         if (depEl) { depEl.value = '0'; }
         const balWrap = document.getElementById('rtBalanceWrap');
@@ -6108,7 +5890,9 @@
         const tbody = document.querySelector('#itemsTable tbody');
         tbody.innerHTML = '';
 
+        if (typeof window.clearJobPhotos === 'function') window.clearJobPhotos();
         ensureServiceChargeRow();
+        ensureRegularLaborRow();
         renderInvoiceEntrySelector([]);
         updateInvoiceSummary();
       }
@@ -8684,7 +8468,6 @@
       function closeQuickAddModal() {
         const modal = document.getElementById('quickAddMaterialsModal');
         if (modal) { modal.classList.remove('show'); modal.setAttribute('aria-hidden', 'true'); }
-        window._qaEmptyRowToReplace = null; // cancelled — don't remove anything
       }
 
       function renderQuickAddList(filterText) {
@@ -8842,14 +8625,6 @@
             markup: saved?.markup !== undefined ? saved.markup : getDefaultMarkupPercent(), customerPrice: saved?.customerPrice || 0 });
           _qaAddToRecents(desc);
         });
-        // If the modal was opened via the browse button on a fresh empty row, remove that orphan
-        if (window._qaEmptyRowToReplace) {
-          const orphan = window._qaEmptyRowToReplace;
-          if (orphan?.isConnected && !orphan.querySelector('.item-desc')?.value?.trim()) {
-            orphan.remove();
-          }
-          window._qaEmptyRowToReplace = null;
-        }
         closeQuickAddModal();
         saveInvoiceSession();
         updateInvoiceRunningTotal();
@@ -8858,129 +8633,74 @@
       // ── Materials Templates ────────────────────────────────────────────────────
       (function() {
         const MTM_KEY = 'materialsTemplates_v1';
-        const DEFAULTS_SEED_VERSION = 2; // bump whenever DEFAULT_TEMPLATES are updated
         function uid() { return 'mt_' + Math.random().toString(36).substr(2,9) + '_' + Date.now(); }
 
         const DEFAULT_TEMPLATES = [
-          // ── Furnace Install — Rheem (CSA 636 Venting) ─────────────────────
-          { id: uid(), name: 'Furnace Install — Rheem (636 Venting)', items: [
-            { id:uid(), name:'Rheem 60,000 Two Stage Furnace',   qty:1,   unit:'ea'  },
-            // 636 Venting
-            { id:uid(), name:"10' 636",                          qty:3,   unit:'Ea'  },
-            { id:uid(), name:'2" 636 90°',                       qty:2,   unit:'ea'  },
-            { id:uid(), name:'2" 636 45°',                       qty:1,   unit:'ea'  },
-            { id:uid(), name:'2" 636 Coupling',                  qty:2,   unit:'ea'  },
-            { id:uid(), name:'636 Barbed Fitting',               qty:2,   unit:'ea'  },
-            // Gas connection
-            { id:uid(), name:'3/4" Ball Valve (Indoor Gas)',     qty:1,   unit:'ea'  },
-            { id:uid(), name:'Gas Flex Connector 24"',           qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron Union',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - Tee',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - Cap',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron Nipple 3"',        qty:2,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - 90°',            qty:2,   unit:'ea'  },
-            // Condensate
-            { id:uid(), name:'1/2 PVC 90',                       qty:2,   unit:'ea'  },
-            { id:uid(), name:'1/2 PVC Pipe',                     qty:6,   unit:'Ft'  },
-            { id:uid(), name:'1/2 PVC Coupling',                 qty:1,   unit:'ea'  },
-            // Misc
-            { id:uid(), name:'Furnace Filter 20x25x1',           qty:1,   unit:'ea'  },
-            { id:uid(), name:'Thermostat: Honeywell Focus Pro',  qty:1,   unit:'ea'  },
-            { id:uid(), name:'Thermostat Wire (per ft)',         qty:25,  unit:'ft'  },
+          { id: uid(), name: 'A/C Install', items: [
+            { id:uid(), name:'Condensing unit',              qty:1,  unit:'unit' },
+            { id:uid(), name:'Air handler / evap coil',     qty:1,  unit:'unit' },
+            { id:uid(), name:'Refrigerant lineset',          qty:1,  unit:'set'  },
+            { id:uid(), name:'Disconnect box (240V)',         qty:1,  unit:'ea'   },
+            { id:uid(), name:'Thermostat',                   qty:1,  unit:'ea'   },
+            { id:uid(), name:'Thermostat wire 18/5',         qty:1,  unit:'roll' },
+            { id:uid(), name:'Drain pan',                    qty:1,  unit:'ea'   },
+            { id:uid(), name:'Condensate drain line (PVC)',  qty:1,  unit:'ft'   },
+            { id:uid(), name:'P-trap',                       qty:1,  unit:'ea'   },
+            { id:uid(), name:'Filter drier (liquid line)',   qty:1,  unit:'ea'   },
+            { id:uid(), name:'Refrigerant R-410A / R-32',   qty:1,  unit:'lb'   },
+            { id:uid(), name:'Electrical wire 12 AWG',       qty:1,  unit:'ft'   },
+            { id:uid(), name:'Breaker 2-pole',               qty:1,  unit:'ea'   },
+            { id:uid(), name:'Flex duct connector',          qty:2,  unit:'ea'   },
+            { id:uid(), name:'Foil tape',                    qty:1,  unit:'roll' },
+            { id:uid(), name:'Vibration isolation pads',     qty:4,  unit:'ea'   },
           ]},
-          // ── A/C Install — Rheem 2 Ton ──────────────────────────────────────
-          { id: uid(), name: 'A/C Install — Rheem 2 Ton', items: [
-            { id:uid(), name:'2 Ton Rheem A/C',                  qty:1,   unit:'ea'  },
-            { id:uid(), name:'30x30 Pad',                        qty:1,   unit:'ea'  },
-            // Line set & refrigerant
-            { id:uid(), name:'3/8 Pre insulated Copper Line set',qty:25,  unit:'ft'  },
-            { id:uid(), name:'Refrigerant R-410A (per lb)',      qty:0,   unit:'lb'  },
-            // Electrical
-            { id:uid(), name:'Electrical Disconnect',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'1/2 Seal tight Fitting Straight',  qty:2,   unit:'ea'  },
-            // Condensate
-            { id:uid(), name:'3/4 PVC pipe',                     qty:6,   unit:'Ft'  },
-            { id:uid(), name:'3/4 PVC 90',                       qty:2,   unit:'ea'  },
-            { id:uid(), name:'3/4 PVC coupling',                 qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4 PVC street 90',                qty:1,   unit:'ea'  },
-            // Thermostat
-            { id:uid(), name:'Thermostat: Honeywell Focus Pro',  qty:1,   unit:'ea'  },
-            { id:uid(), name:'Thermostat Wire (per ft)',         qty:25,  unit:'ft'  },
+          { id: uid(), name: 'Furnace Install', items: [
+            { id:uid(), name:'Furnace unit',                 qty:1,  unit:'unit' },
+            { id:uid(), name:'Flue pipe / vent connector',   qty:1,  unit:'set'  },
+            { id:uid(), name:'B-vent cap',                   qty:1,  unit:'ea'   },
+            { id:uid(), name:'Gas flex connector 3/4"',      qty:1,  unit:'ea'   },
+            { id:uid(), name:'Drip leg assembly',            qty:1,  unit:'ea'   },
+            { id:uid(), name:'Manual shutoff valve 3/4"',    qty:1,  unit:'ea'   },
+            { id:uid(), name:'Thermostat',                   qty:1,  unit:'ea'   },
+            { id:uid(), name:'Thermostat wire 18/5',         qty:1,  unit:'roll' },
+            { id:uid(), name:'Filter',                       qty:1,  unit:'ea'   },
+            { id:uid(), name:'Electrical wire 14 AWG',       qty:1,  unit:'ft'   },
+            { id:uid(), name:'15A breaker',                  qty:1,  unit:'ea'   },
+            { id:uid(), name:'Flex duct connector (supply)', qty:2,  unit:'ea'   },
+            { id:uid(), name:'Flex duct connector (return)', qty:1,  unit:'ea'   },
+            { id:uid(), name:'Foil tape',                    qty:1,  unit:'roll' },
+            { id:uid(), name:'Yellow gas tape (PTFE)',        qty:1,  unit:'roll' },
           ]},
-          // ── Furnace + A/C Install — Rheem ──────────────────────────────────
-          { id: uid(), name: 'Furnace + A/C Install — Rheem', items: [
-            { id:uid(), name:'Rheem 60,000 Two Stage Furnace',   qty:1,   unit:'ea'  },
-            { id:uid(), name:'2 Ton Rheem A/C',                  qty:1,   unit:'ea'  },
-            // 636 Venting
-            { id:uid(), name:"10' 636",                          qty:3,   unit:'Ea'  },
-            { id:uid(), name:'2" 636 90°',                       qty:2,   unit:'ea'  },
-            { id:uid(), name:'2" 636 45°',                       qty:1,   unit:'ea'  },
-            { id:uid(), name:'2" 636 Coupling',                  qty:2,   unit:'ea'  },
-            { id:uid(), name:'636 Barbed Fitting',               qty:2,   unit:'ea'  },
-            // Gas connection
-            { id:uid(), name:'3/4" Ball Valve (Indoor Gas)',     qty:1,   unit:'ea'  },
-            { id:uid(), name:'Gas Flex Connector 24"',           qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron Union',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - Tee',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - Cap',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron Nipple 3"',        qty:2,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - 90°',            qty:2,   unit:'ea'  },
-            // A/C — line set & refrigerant
-            { id:uid(), name:'30x30 Pad',                        qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/8 Pre insulated Copper Line set',qty:25,  unit:'ft'  },
-            { id:uid(), name:'Refrigerant R-410A (per lb)',      qty:0,   unit:'lb'  },
-            { id:uid(), name:'Electrical Disconnect',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'1/2 Seal tight Fitting Straight',  qty:2,   unit:'ea'  },
-            // Condensate (shared)
-            { id:uid(), name:'3/4 PVC pipe',                     qty:6,   unit:'Ft'  },
-            { id:uid(), name:'3/4 PVC 90',                       qty:2,   unit:'ea'  },
-            { id:uid(), name:'3/4 PVC coupling',                 qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4 PVC street 90',                qty:1,   unit:'ea'  },
-            // Misc
-            { id:uid(), name:'Furnace Filter 20x25x1',           qty:1,   unit:'ea'  },
-            { id:uid(), name:'Thermostat: Honeywell Focus Pro',  qty:1,   unit:'ea'  },
-            { id:uid(), name:'Thermostat Wire (per ft)',         qty:25,  unit:'ft'  },
+          { id: uid(), name: 'Ductless Install (Pre-Insulated Line Sets)', items: [
+            { id:uid(), name:'Outdoor condenser unit',       qty:1,  unit:'unit' },
+            { id:uid(), name:'Indoor wall-mount head',       qty:1,  unit:'unit' },
+            { id:uid(), name:'Pre-insulated lineset',        qty:1,  unit:'set'  },
+            { id:uid(), name:'Wall sleeve / cover plate',    qty:1,  unit:'ea'   },
+            { id:uid(), name:'Disconnect box (240V)',         qty:1,  unit:'ea'   },
+            { id:uid(), name:'Electrical wire 10 or 12 AWG', qty:1,  unit:'ft'   },
+            { id:uid(), name:'Breaker 2-pole',               qty:1,  unit:'ea'   },
+            { id:uid(), name:'Mini-split mounting bracket',  qty:1,  unit:'set'  },
+            { id:uid(), name:'Concrete anchors / lag bolts', qty:4,  unit:'ea'   },
+            { id:uid(), name:'Condensate drain hose',        qty:1,  unit:'ft'   },
+            { id:uid(), name:'Line hide / chase cover',      qty:1,  unit:'set'  },
+            { id:uid(), name:'Communication wire 14/4',      qty:1,  unit:'ft'   },
+            { id:uid(), name:'Refrigerant R-410A / R-32',   qty:1,  unit:'lb'   },
           ]},
-          // ── Ductless Install — Gree 1½ Ton ────────────────────────────────
-          { id: uid(), name: 'Ductless Install — Gree 1½ Ton', items: [
-            { id:uid(), name:'Ductless Split: Gree 1 1/2 Ton',  qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/8 Pre insulated Copper Line set',qty:25,  unit:'ft'  },
-            { id:uid(), name:'Electrical Disconnect',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'1/2 Seal tight Fitting Straight',  qty:2,   unit:'ea'  },
-            { id:uid(), name:'Communication Wire',               qty:25,  unit:'Ft'  },
-            { id:uid(), name:'3/4 PVC pipe',                     qty:6,   unit:'Ft'  },
-            { id:uid(), name:'3/4 PVC 90',                       qty:2,   unit:'ea'  },
-            { id:uid(), name:'3/4 PVC coupling',                 qty:1,   unit:'ea'  },
-            { id:uid(), name:'Refrigerant R-410A (per lb)',      qty:0,   unit:'lb'  },
-          ]},
-          // ── Pool Heater Gas Hook Up ─────────────────────────────────────────
           { id: uid(), name: 'Pool Heater Gas Hook Up', items: [
-            { id:uid(), name:'3/4" Ball Valve (Indoor Gas)',     qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron Union',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - Tee',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - Cap',            qty:1,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron - 90°',            qty:2,   unit:'ea'  },
-            { id:uid(), name:'3/4" Black Iron Nipple 3"',        qty:3,   unit:'ea'  },
-            { id:uid(), name:'Gas Flex Connector 36"',           qty:1,   unit:'ea'  },
+            { id:uid(), name:'Drip leg assembly',            qty:1,  unit:'ea'   },
+            { id:uid(), name:'3/4" shutoff valve',           qty:1,  unit:'ea'   },
+            { id:uid(), name:'3/4" union',                   qty:1,  unit:'ea'   },
+            { id:uid(), name:'3/4" tee',                     qty:1,  unit:'ea'   },
+            { id:uid(), name:'3/4" 90° elbow',               qty:2,  unit:'ea'   },
+            { id:uid(), name:'3/4" gas flex connector',      qty:1,  unit:'ea'   },
+            { id:uid(), name:'3/4" black iron pipe',         qty:1,  unit:'ft'   },
+            { id:uid(), name:'Yellow gas tape (PTFE)',        qty:1,  unit:'roll' },
           ]},
         ];
 
         function loadTmplData() {
-          try {
-            const r = JSON.parse(_ls.getItem(MTM_KEY));
-            if (r && Array.isArray(r.templates)) {
-              // Seed defaults if never done, or if DEFAULT_TEMPLATES were updated
-              if ((r.defaultsSeeded || 0) < DEFAULTS_SEED_VERSION) {
-                const existingNames = new Set(r.templates.map(t => t.name));
-                const toAdd = DEFAULT_TEMPLATES.filter(t => !existingNames.has(t.name));
-                r.templates = [...toAdd, ...r.templates];
-                r.defaultsSeeded = DEFAULTS_SEED_VERSION;
-                saveTmplData(r);
-              }
-              return r;
-            }
-          } catch(e) {}
-          const d = { templates: DEFAULT_TEMPLATES, defaultsSeeded: DEFAULTS_SEED_VERSION };
+          try { const r=JSON.parse(_ls.getItem(MTM_KEY)); if(r&&r.templates) return r; } catch(e) {}
+          const d = { templates: DEFAULT_TEMPLATES };
           saveTmplData(d); return d;
         }
         function saveTmplData(d) { try { _ls.setItem(MTM_KEY, JSON.stringify(d)); } catch(e) {} }
@@ -9200,95 +8920,9 @@
 
             function renderMgmtItems() {
               body.innerHTML = '';
-              // ── Shared fixed autocomplete dropdown (escapes overflow:hidden) ──
-              if (!document.getElementById('_mtmAcDrop')) {
-                const _drop = document.createElement('div');
-                _drop.id = '_mtmAcDrop';
-                _drop.style.cssText = 'position:fixed;background:#1f1f1f;border:1px solid #ff4500;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.55);max-height:220px;overflow-y:auto;z-index:99999;display:none;min-width:200px;';
-                document.body.appendChild(_drop);
-              }
-              const _acDrop = document.getElementById('_mtmAcDrop');
-
-              function _positionDrop(inputEl) {
-                const r = inputEl.getBoundingClientRect();
-                const spaceBelow = window.innerHeight - r.bottom;
-                const spaceAbove = r.top;
-                if (spaceBelow >= 150 || spaceBelow >= spaceAbove) {
-                  _acDrop.style.top  = (r.bottom + 4) + 'px';
-                  _acDrop.style.bottom = 'auto';
-                  _acDrop.style.maxHeight = Math.min(220, spaceBelow - 8) + 'px';
-                } else {
-                  _acDrop.style.bottom = (window.innerHeight - r.top + 4) + 'px';
-                  _acDrop.style.top = 'auto';
-                  _acDrop.style.maxHeight = Math.min(220, spaceAbove - 8) + 'px';
-                }
-                _acDrop.style.left  = r.left + 'px';
-                _acDrop.style.width = r.width + 'px';
-              }
-
-              let _acActiveInput = null;
-
-              function _showAcDrop(inputEl, unitEl, query, inTemplateSet) {
-                _acActiveInput = inputEl;
-                _acDrop.innerHTML = '';
-                const q = (query || '').trim().toLowerCase();
-                const allMats = typeof materialCatalog !== 'undefined' ? Object.values(materialCatalog) : [];
-                const filtered = allMats.filter(function(m){ return !q || m.desc.toLowerCase().includes(q); });
-                filtered.sort(function(a,b){
-                  const aS = a.desc.toLowerCase().startsWith(q)?0:1, bS = b.desc.toLowerCase().startsWith(q)?0:1;
-                  if (aS!==bS) return aS-bS; return a.desc.localeCompare(b.desc);
-                });
-                if (!filtered.length) { _acDrop.style.display='none'; return; }
-                filtered.slice(0,50).forEach(function(mat) {
-                  const opt = document.createElement('div');
-                  const alreadyIn = inTemplateSet && inTemplateSet.has(mat.desc.toLowerCase());
-                  opt.style.cssText = 'padding:.6rem .8rem;cursor:pointer;border-bottom:1px solid rgba(255,69,0,.15);display:flex;align-items:center;justify-content:space-between;gap:.5rem;min-height:44px;' + (alreadyIn ? 'opacity:.5;' : '');
-                  const left = document.createElement('span');
-                  left.style.cssText = 'font-weight:600;font-size:.92rem;word-break:break-word;color:#e0e0e0;';
-                  left.textContent = mat.desc;
-                  const right = document.createElement('span');
-                  right.style.cssText = 'font-size:.78rem;color:#ff9060;white-space:nowrap;flex-shrink:0;background:rgba(255,69,0,.12);padding:.15rem .4rem;border-radius:4px;';
-                  right.textContent = mat.unit || 'ea';
-                  opt.appendChild(left); opt.appendChild(right);
-                  let _touchMoved = false;
-                  opt.addEventListener('touchstart', function(e){ _touchMoved = false; opt.style.background='rgba(255,69,0,.22)'; }, {passive:true});
-                  opt.addEventListener('touchmove', function(e){ _touchMoved = true; opt.style.background=''; }, {passive:true});
-                  opt.addEventListener('touchend', function(e){
-                    if (_touchMoved) return; // finger dragged = scroll, not a tap
-                    e.preventDefault();
-                    inputEl.value = mat.desc;
-                    if (unitEl) unitEl.value = mat.unit || 'ea';
-                    _acDrop.style.display='none';
-                    inputEl.dispatchEvent(new Event('change'));
-                  });
-                  opt.addEventListener('mousedown', function(e){
-                    e.preventDefault();
-                    inputEl.value = mat.desc;
-                    if (unitEl) unitEl.value = mat.unit || 'ea';
-                    _acDrop.style.display='none';
-                    inputEl.dispatchEvent(new Event('change'));
-                  });
-                  opt.addEventListener('mouseover', function(){ opt.style.background='rgba(255,69,0,.18)'; });
-                  opt.addEventListener('mouseout',  function(){ opt.style.background=''; });
-                  _acDrop.appendChild(opt);
-                });
-                _positionDrop(inputEl);
-                _acDrop.style.display = 'block';
-              }
-
-              function _hideAcDrop() { _acDrop.style.display='none'; _acActiveInput=null; }
-
-              function _bindAcToInput(inputEl, unitEl, getInTemplateSet) {
-                inputEl.setAttribute('autocomplete','off');
-                inputEl.addEventListener('input', function(){ _showAcDrop(inputEl, unitEl, inputEl.value, getInTemplateSet ? getInTemplateSet() : null); });
-                inputEl.addEventListener('focus', function(){ _showAcDrop(inputEl, unitEl, inputEl.value, getInTemplateSet ? getInTemplateSet() : null); });
-                inputEl.addEventListener('blur',  function(){ setTimeout(_hideAcDrop, 200); });
-                inputEl.addEventListener('keydown', function(e){
-                  if (e.key==='Escape') { _hideAcDrop(); return; }
-                  if (e.key==='Enter')  { _hideAcDrop(); return; }
-                });
-                window.addEventListener('scroll', function(){ if(_acActiveInput===inputEl) _positionDrop(inputEl); }, {passive:true});
-              }
+              // Clean up any leftover floating dropdown from previous approach
+              const oldDrop = document.getElementById('_mtmAcDrop');
+              if (oldDrop) oldDrop.remove();
 
               // ── Existing items ──
               tmpl.items.forEach(item => {
@@ -9296,6 +8930,7 @@
                 row.className = 'mtm-manage-item-row';
                 const nameIn = document.createElement('input');
                 nameIn.type = 'text'; nameIn.className = 'mtm-in-name'; nameIn.value = item.name; nameIn.style.flex='1';
+                nameIn.setAttribute('autocomplete','off');
                 const qtyIn  = document.createElement('input');
                 qtyIn.type = 'number'; qtyIn.className = 'mtm-in-qty'; qtyIn.value = item.qty; qtyIn.min = '0'; qtyIn.step = 'any';
                 const unitIn = document.createElement('input');
@@ -9310,9 +8945,7 @@
                   saveTmplData(tmplData);
                 };
                 nameIn.addEventListener('change', save); qtyIn.addEventListener('change', save); unitIn.addEventListener('change', save);
-                _bindAcToInput(nameIn, unitIn, null);
                 delBtn.addEventListener('click', () => {
-                  _hideAcDrop();
                   tmpl.items = tmpl.items.filter(i => i.id !== item.id);
                   saveTmplData(tmplData);
                   renderMgmtItems();
@@ -9321,25 +8954,118 @@
                 body.appendChild(row);
               });
 
-              // ── Add new item row ──
-              const addRow = document.createElement('div');
-              addRow.className = 'mtm-add-item-row';
-              const newName = document.createElement('input'); newName.type='text'; newName.className='mtm-in-name'; newName.placeholder='Search saved materials…'; newName.style.flex='1';
-              const newQty  = document.createElement('input'); newQty.type='number'; newQty.className='mtm-in-qty'; newQty.placeholder='Qty'; newQty.min='0'; newQty.step='any'; newQty.value='1';
-              const newUnit = document.createElement('input'); newUnit.type='text'; newUnit.className='mtm-in-unit'; newUnit.placeholder='ea';
-              const addBtn  = document.createElement('button'); addBtn.type='button'; addBtn.textContent='+ Add';
-              addBtn.style.cssText='background:#28a745;color:#fff;border:none;padding:.35rem .8rem;border-radius:6px;font-size:.85rem;cursor:pointer;min-height:34px;margin:0;white-space:nowrap;';
-              _bindAcToInput(newName, newUnit, function(){ return new Set(tmpl.items.map(function(i){ return i.name.toLowerCase(); })); });
-              addBtn.addEventListener('click', () => {
+              // ── Add item panel (inline — no floating dropdown) ──
+              const addPanel = document.createElement('div');
+              addPanel.style.cssText = 'margin-top:.65rem;border:1px solid rgba(255,69,0,.3);border-radius:8px;overflow:hidden;background:#1a1a1a;';
+
+              const addPanelHdr = document.createElement('div');
+              addPanelHdr.style.cssText = 'padding:.38rem .75rem;background:rgba(255,69,0,.1);font-size:.76rem;color:#ffb08a;font-weight:700;letter-spacing:.06em;';
+              addPanelHdr.textContent = '+ ADD ITEM FROM SAVED MATERIALS';
+              addPanel.appendChild(addPanelHdr);
+
+              // Search input
+              const searchWrap = document.createElement('div');
+              searchWrap.style.cssText = 'padding:.4rem .45rem .25rem;';
+              const newSearch = document.createElement('input');
+              newSearch.type = 'text';
+              newSearch.placeholder = 'Search saved materials…';
+              newSearch.setAttribute('autocomplete', 'off');
+              newSearch.style.cssText = 'width:100%;box-sizing:border-box;padding:.4rem .6rem;font-size:.88rem;background:#222;border:1px solid rgba(255,69,0,.45);border-radius:6px;color:#e0e0e0;min-height:38px;margin:0;';
+              searchWrap.appendChild(newSearch);
+              addPanel.appendChild(searchWrap);
+
+              // Inline results list
+              const resultsList = document.createElement('div');
+              resultsList.style.cssText = 'max-height:180px;overflow-y:auto;border-top:1px solid rgba(255,69,0,.12);';
+
+              function renderMatResults(query) {
+                resultsList.innerHTML = '';
+                const q = (query || '').trim().toLowerCase();
+                const allMats = typeof materialCatalog !== 'undefined' ? Object.values(materialCatalog) : [];
+                const alreadyInSet = new Set(tmpl.items.map(function(i){ return i.name.toLowerCase(); }));
+                const filtered = allMats.filter(function(m){ return !q || m.desc.toLowerCase().includes(q); });
+                filtered.sort(function(a, b) {
+                  const aS = q && a.desc.toLowerCase().startsWith(q) ? 0 : 1;
+                  const bS = q && b.desc.toLowerCase().startsWith(q) ? 0 : 1;
+                  if (aS !== bS) return aS - bS;
+                  return a.desc.localeCompare(b.desc);
+                });
+                if (!filtered.length) {
+                  const empty = document.createElement('div');
+                  empty.style.cssText = 'padding:.65rem .8rem;color:#666;font-size:.84rem;font-style:italic;';
+                  empty.textContent = q ? 'No materials match "' + query + '"' : 'No saved materials yet — add some via Saved Materials first.';
+                  resultsList.appendChild(empty);
+                  return;
+                }
+                filtered.slice(0, 80).forEach(function(mat) {
+                  const r2 = document.createElement('div');
+                  const alreadyIn = alreadyInSet.has(mat.desc.toLowerCase());
+                  r2.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.5rem .8rem;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;min-height:44px;' + (alreadyIn ? 'opacity:.38;' : '');
+                  const nameSpan = document.createElement('span');
+                  nameSpan.style.cssText = 'flex:1;font-size:.87rem;color:#e0e0e0;word-break:break-word;';
+                  nameSpan.textContent = mat.desc;
+                  const unitBadge = document.createElement('span');
+                  unitBadge.style.cssText = 'font-size:.75rem;color:#ff9060;white-space:nowrap;background:rgba(255,69,0,.12);padding:.1rem .35rem;border-radius:4px;flex-shrink:0;';
+                  unitBadge.textContent = mat.unit || 'ea';
+                  r2.appendChild(nameSpan);
+                  r2.appendChild(unitBadge);
+                  let _tm = false;
+                  r2.addEventListener('touchstart', function(){ _tm = false; r2.style.background = 'rgba(255,69,0,.2)'; }, { passive: true });
+                  r2.addEventListener('touchmove',  function(){ _tm = true;  r2.style.background = ''; }, { passive: true });
+                  r2.addEventListener('touchend', function(e) {
+                    if (_tm) return;
+                    e.preventDefault();
+                    tmpl.items.push({ id: uid(), name: mat.desc, qty: 1, unit: mat.unit || 'ea' });
+                    saveTmplData(tmplData);
+                    renderMgmtItems();
+                  });
+                  r2.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    tmpl.items.push({ id: uid(), name: mat.desc, qty: 1, unit: mat.unit || 'ea' });
+                    saveTmplData(tmplData);
+                    renderMgmtItems();
+                  });
+                  r2.addEventListener('mouseover', function(){ r2.style.background = 'rgba(255,69,0,.18)'; });
+                  r2.addEventListener('mouseout',  function(){ r2.style.background = ''; });
+                  resultsList.appendChild(r2);
+                });
+              }
+
+              newSearch.addEventListener('input', function(){ renderMatResults(newSearch.value); });
+              renderMatResults('');
+              addPanel.appendChild(resultsList);
+
+              // Manual / custom item row
+              const manualWrap = document.createElement('div');
+              manualWrap.style.cssText = 'display:flex;gap:.4rem;align-items:center;padding:.4rem .45rem;border-top:1px solid rgba(255,69,0,.18);flex-wrap:wrap;';
+              const manualLabel = document.createElement('div');
+              manualLabel.style.cssText = 'font-size:.75rem;color:#777;width:100%;margin-bottom:.05rem;';
+              manualLabel.textContent = 'Custom item:';
+              const newName = document.createElement('input');
+              newName.type = 'text'; newName.className = 'mtm-in-name'; newName.placeholder = 'Item name…';
+              newName.style.cssText = 'flex:1;min-width:0;';
+              newName.setAttribute('autocomplete','off');
+              const newQty  = document.createElement('input');
+              newQty.type = 'number'; newQty.className = 'mtm-in-qty'; newQty.placeholder = 'Qty'; newQty.min='0'; newQty.step='any'; newQty.value='1';
+              const newUnit = document.createElement('input');
+              newUnit.type = 'text'; newUnit.className = 'mtm-in-unit'; newUnit.placeholder = 'ea';
+              const addBtn  = document.createElement('button');
+              addBtn.type = 'button'; addBtn.textContent = '+ Add';
+              addBtn.style.cssText = 'background:#28a745;color:#fff;border:none;padding:.35rem .8rem;border-radius:6px;font-size:.85rem;cursor:pointer;min-height:34px;margin:0;white-space:nowrap;';
+              addBtn.addEventListener('click', function() {
                 const n = newName.value.trim(); if (!n) { newName.focus(); return; }
-                _hideAcDrop();
                 tmpl.items.push({ id: uid(), name: n, qty: parseFloat(newQty.value)||1, unit: newUnit.value.trim()||'ea' });
                 saveTmplData(tmplData);
                 renderMgmtItems();
               });
-              newName.addEventListener('keydown', e => { if (e.key==='Enter') addBtn.click(); });
-              addRow.appendChild(newName); addRow.appendChild(newQty); addRow.appendChild(newUnit); addRow.appendChild(addBtn);
-              body.appendChild(addRow);
+              newName.addEventListener('keydown', function(e){ if (e.key==='Enter') addBtn.click(); });
+              manualWrap.appendChild(manualLabel);
+              manualWrap.appendChild(newName);
+              manualWrap.appendChild(newQty);
+              manualWrap.appendChild(newUnit);
+              manualWrap.appendChild(addBtn);
+              addPanel.appendChild(manualWrap);
+              body.appendChild(addPanel);
             }
             renderMgmtItems();
 
@@ -9370,279 +9096,6 @@
         });
 
       })(); // end Materials Templates IIFE
-
-      // ── Add-to-Template sheet ────────────────────────────────────────────────
-      (function () {
-        const ATT_KEY = 'materialsTemplates_v1';
-        const modal   = document.getElementById('attModal');
-        const sheet   = document.getElementById('attSheet');
-        const backdrop= document.getElementById('attBackdrop');
-        const closeBtn= document.getElementById('attCloseBtn');
-        const matLabel= document.getElementById('attMaterial');
-        const listEl  = document.getElementById('attTemplateList');
-        const toast   = document.getElementById('attToast');
-        let _toastTimer = null;
-
-        function loadTemplates() {
-          try { return JSON.parse(localStorage.getItem(ATT_KEY) || '{}').templates || []; }
-          catch(e) { return []; }
-        }
-        function saveTemplates(templates) {
-          try {
-            const d = JSON.parse(localStorage.getItem(ATT_KEY) || '{}');
-            d.templates = templates;
-            localStorage.setItem(ATT_KEY, JSON.stringify(d));
-          } catch(e) {}
-        }
-        function uid() { return 'mt_' + Math.random().toString(36).substr(2,9) + '_' + Date.now(); }
-
-        function showToast(msg) {
-          toast.textContent = msg;
-          toast.classList.add('show');
-          clearTimeout(_toastTimer);
-          _toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-        }
-
-        function openAddToTemplate(item) {
-          matLabel.textContent = '📦 ' + item.desc;
-          listEl.innerHTML = '';
-          const templates = loadTemplates();
-          if (!templates.length) {
-            listEl.innerHTML = '<div class="att-no-templates">No templates yet — create one in the 📋 Materials Templates tab first.</div>';
-          } else {
-            templates.forEach(tmpl => {
-              const alreadyIn = tmpl.items.some(i => i.name.trim().toLowerCase() === item.desc.trim().toLowerCase());
-              const btn = document.createElement('button');
-              btn.className = 'att-tmpl-btn';
-              btn.innerHTML =
-                `<span class="att-tmpl-icon">${alreadyIn ? '✅' : '📋'}</span>` +
-                `<span style="flex:1;">${tmpl.name}</span>` +
-                `<span class="att-tmpl-count">${tmpl.items.length} item${tmpl.items.length === 1 ? '' : 's'}</span>`;
-              if (alreadyIn) btn.style.opacity = '.6';
-              btn.addEventListener('click', () => {
-                const templates2 = loadTemplates();
-                const t = templates2.find(x => x.id === tmpl.id);
-                if (!t) return;
-                // Prevent exact-name duplicates
-                if (t.items.some(i => i.name.trim().toLowerCase() === item.desc.trim().toLowerCase())) {
-                  showToast('⚠️ Already in "' + tmpl.name + '"');
-                  close();
-                  return;
-                }
-                t.items.push({ id: uid(), name: item.desc, qty: 1, unit: item.unit || 'ea' });
-                saveTemplates(templates2);
-                showToast('✅ Added to "' + tmpl.name + '"');
-                close();
-              });
-              listEl.appendChild(btn);
-            });
-          }
-          modal.classList.add('show');
-          sheet.classList.add('entering');
-          requestAnimationFrame(() => requestAnimationFrame(() => sheet.classList.remove('entering')));
-        }
-
-        function close() {
-          sheet.style.transform = 'translateY(100%)';
-          setTimeout(() => { modal.classList.remove('show'); sheet.style.transform = ''; }, 230);
-        }
-
-        closeBtn.addEventListener('click', close);
-        backdrop.addEventListener('click', close);
-
-        // Expose globally so renderSavedMaterialsList can call it
-        window.openAddToTemplate = openAddToTemplate;
-      })(); // end Add-to-Template IIFE
-
-      // ── Browse Saved Materials bottom-sheet ─────────────────────────────────
-      (function () {
-        const modal   = document.getElementById('browseMatsModal');
-        const sheet   = document.getElementById('browseMatsSheet');
-        const backdrop= document.getElementById('browseMatsBackdrop');
-        const closeBtn= document.getElementById('browseMatsClose');
-        const searchEl= document.getElementById('browseMatsSearch');
-        const listEl  = document.getElementById('browseMatsList');
-        const emptyEl = document.getElementById('browseMatsEmpty');
-        const countEl = document.getElementById('browseMatsCount');
-        const picker  = document.getElementById('bmTmplPicker');
-
-        // ── Helpers ──────────────────────────────────────────────────────────
-        function getTmplData() {
-          try { return JSON.parse(localStorage.getItem('invTemplatesData') || '{"templates":[]}'); }
-          catch(e) { return { templates: [] }; }
-        }
-        function saveTmplDataExt(d) {
-          localStorage.setItem('invTemplatesData', JSON.stringify(d));
-        }
-        function uid() { return Math.random().toString(36).slice(2,10) + Date.now().toString(36); }
-
-        // ── Open / Close ─────────────────────────────────────────────────────
-        function openBrowse() {
-          searchEl.value = '';
-          renderList('');
-          modal.classList.add('show');
-          // Animate in
-          sheet.classList.add('entering');
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => sheet.classList.remove('entering'));
-          });
-          setTimeout(() => searchEl.focus(), 300);
-        }
-
-        function closeBrowse() {
-          modal.classList.remove('show');
-          picker.style.display = 'none';
-        }
-
-        backdrop.addEventListener('click', closeBrowse);
-        closeBtn.addEventListener('click', closeBrowse);
-        modal.addEventListener('keydown', e => { if (e.key === 'Escape') closeBrowse(); });
-
-        document.getElementById('browseMaterials').addEventListener('click', openBrowse);
-
-        // ── Render list ───────────────────────────────────────────────────────
-        function renderList(query) {
-          const q = query.trim().toLowerCase();
-          const all = typeof materialCatalog !== 'undefined'
-            ? Object.values(materialCatalog)
-                .sort((a, b) => a.desc.localeCompare(b.desc))
-            : [];
-          const filtered = q
-            ? all.filter(m => m.desc.toLowerCase().includes(q))
-            : all;
-
-          countEl.textContent = filtered.length
-            ? '(' + filtered.length + ')'
-            : '';
-          listEl.innerHTML = '';
-          emptyEl.style.display = filtered.length ? 'none' : 'block';
-
-          filtered.forEach(mat => {
-            const row = document.createElement('div');
-            row.className = 'bm-row';
-
-            const info = document.createElement('div');
-            info.className = 'bm-info';
-
-            const name = document.createElement('div');
-            name.className = 'bm-name';
-            name.textContent = mat.desc;
-
-            const meta = document.createElement('div');
-            meta.className = 'bm-meta';
-            const unitBadge = document.createElement('span');
-            unitBadge.className = 'bm-unit';
-            unitBadge.textContent = mat.unit || 'ea';
-            meta.appendChild(unitBadge);
-            if (mat.customerPrice) {
-              const cost = document.createElement('span');
-              cost.className = 'bm-cost';
-              cost.textContent = '$' + parseFloat(mat.customerPrice).toFixed(2);
-              meta.appendChild(cost);
-            }
-
-            info.appendChild(name);
-            info.appendChild(meta);
-
-            const actions = document.createElement('div');
-            actions.className = 'bm-actions';
-
-            // ＋ Add to Invoice
-            const addInv = document.createElement('button');
-            addInv.className = 'bm-add-inv';
-            addInv.textContent = '+ Invoice';
-            addInv.addEventListener('click', () => {
-              if (typeof createItemRow === 'function') {
-                createItemRow({
-                  desc: mat.desc,
-                  qty: 1,
-                  unit: mat.unit || 'ea',
-                  distributorCost: mat.distributorCost || 0,
-                  markup: mat.markup !== undefined ? mat.markup
-                    : (typeof getDefaultMarkupPercent === 'function' ? getDefaultMarkupPercent() : 25),
-                  customerPrice: mat.customerPrice || 0
-                });
-              }
-              // Brief flash to confirm
-              addInv.textContent = '✓ Added';
-              addInv.style.background = '#1a6b30';
-              setTimeout(() => {
-                addInv.textContent = '+ Invoice';
-                addInv.style.background = '';
-              }, 900);
-            });
-
-            // 📋 Add to Template
-            const addTmpl = document.createElement('button');
-            addTmpl.className = 'bm-add-tmpl';
-            addTmpl.title = 'Add to a job template';
-            addTmpl.textContent = '📋';
-            addTmpl.addEventListener('click', (e) => {
-              e.stopPropagation();
-              showTmplPicker(mat, addTmpl);
-            });
-
-            actions.appendChild(addInv);
-            actions.appendChild(addTmpl);
-            row.appendChild(info);
-            row.appendChild(actions);
-            listEl.appendChild(row);
-          });
-        }
-
-        searchEl.addEventListener('input', () => renderList(searchEl.value));
-
-        // ── Template picker ───────────────────────────────────────────────────
-        function showTmplPicker(mat, anchorBtn) {
-          const data = getTmplData();
-          if (!data.templates.length) {
-            alert('No templates yet. Create one with "📋 Load From Job Template" → Manage Templates → + New Template.');
-            return;
-          }
-          picker.innerHTML = '';
-          data.templates.forEach(tmpl => {
-            const item = document.createElement('div');
-            item.className = 'bm-tp-item';
-            const alreadyIn = tmpl.items.some(i => i.name.toLowerCase() === mat.desc.toLowerCase());
-            item.textContent = tmpl.name + (alreadyIn ? ' ✓' : '');
-            item.style.opacity = alreadyIn ? '.6' : '1';
-            item.addEventListener('click', () => {
-              if (!alreadyIn) {
-                tmpl.items.push({
-                  id: uid(),
-                  name: mat.desc,
-                  unit: mat.unit || 'ea',
-                  qty: 1
-                });
-                saveTmplDataExt(data);
-              }
-              picker.style.display = 'none';
-              // Confirm flash on the 📋 button
-              anchorBtn.textContent = '✓';
-              setTimeout(() => { anchorBtn.textContent = '📋'; }, 1000);
-            });
-            picker.appendChild(item);
-          });
-
-          // Position picker above/below the anchor button
-          const r   = anchorBtn.getBoundingClientRect();
-          const vpH = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-          picker.style.display = 'block';
-          const ph = picker.offsetHeight;
-          picker.style.left = Math.max(4, r.right - picker.offsetWidth) + 'px';
-          picker.style.top = (r.top - ph - 6 >= 0)
-            ? (r.top - ph - 6) + 'px'
-            : (r.bottom + 6) + 'px';
-        }
-
-        // Close picker on outside tap
-        document.addEventListener('click', e => {
-          if (picker.style.display === 'block' && !picker.contains(e.target)) {
-            picker.style.display = 'none';
-          }
-        });
-
-      })(); // end Browse Saved Materials
       // ──────────────────────────────────────────────────────────────────────────
 
       loadData();
@@ -11585,9 +11038,13 @@
         document.body.appendChild(lb);
       }
 
-      // ── Exposed helper for PDF generation ─────────────────────────
+      // ── Exposed helpers ────────────────────────────────────────────
       window.getJobPhotosForPdf = function() {
         return jobPhotos.filter(p => p.include && p.dataUrl);
+      };
+      window.clearJobPhotos = function() {
+        jobPhotos = [];
+        renderPhotos();
       };
 
       // Initial render
